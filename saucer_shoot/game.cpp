@@ -1,26 +1,44 @@
+// Engine
 #include "GameManager.h"
 #include "LogManager.h"
 #include "ResourceManager.h"
+// Project
+#include "src/saucer.h"
 
-void loadResources(void) {
-  RM.loadSprite("sprites-simple/saucer-spr.txt", "saucer");
-}
+
+void loadResources();
+void populateWorld();
+
 
 auto main(int argc, char *argv[]) -> int {
 
   // Startup
   if (GM.startUp()) {
-    LM.writeLog("Error starting game manager");
     GM.shutDown();
-    return 1;
+    return LM.writeLog("Error starting game manager");
   }
+  df::splash();
 
   // Debug
   LM.setFlush(true);
 
-  df::splash();
+  // Set up world
+  loadResources();
+  populateWorld();
+
+  // Run game loop
+  GM.run();
 
   GM.shutDown();
 
   return 0;
+}
+
+
+void loadResources() {
+  RM.loadSprite("sprites-simple/saucer-spr.txt", "saucer");
+}
+
+void populateWorld() {
+  new Saucer;
 }

@@ -1,6 +1,9 @@
 project(saucer_shoot LANGUAGES CXX)
 
-file(GLOB SOURCES "*.cpp")
+file(GLOB SOURCES
+        "*.cpp"
+        "src/*.cpp"
+)
 add_executable(saucer_shoot ${SOURCES})
 
 target_include_directories(saucer_shoot PRIVATE ${DRAGONFLY_INCLUDE_DIR})
