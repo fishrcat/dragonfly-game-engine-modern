@@ -4,6 +4,7 @@
 #include "ResourceManager.h"
 // Project
 #include "src/saucer.h"
+#include "src/hero.h"
 
 
 void loadResources();
@@ -36,9 +37,13 @@ auto main(int argc, char *argv[]) -> int {
 
 
 void loadResources() {
-  RM.loadSprite("sprites-simple/saucer-spr.txt", "saucer");
+
+  RM.loadSprite("assets/sprites-simple/saucer-spr.txt", "saucer");
+  RM.loadSprite("assets/sprites-simple/ship-spr.txt", "ship");
 }
 
 void populateWorld() {
+
   new Saucer;
+  new Hero;
 }

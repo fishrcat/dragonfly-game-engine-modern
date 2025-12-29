@@ -10,5 +10,5 @@ class Saucer : public df::Object {
 
     public:
         Saucer();
-        int eventHandler(const df::Event *p_e) override;
+        auto eventHandler(const df::Event *p_e) -> int override;
 };

@@ -7,6 +7,7 @@
 
 
 Saucer::Saucer() {
+
     // Set up
     Object::setSprite("saucer");
     Object::setType("Saucer");
@@ -30,6 +31,7 @@ auto Saucer::eventHandler(const df::Event *p_e) -> int{
 }
 
 void Saucer::out() {
+
     if (getPosition().getX() >= 0) {
         return;
     }
@@ -38,6 +40,7 @@ void Saucer::out() {
 }
 
 void Saucer::moveToStart() {
+
     df::Vector temp_pos;
 
     const float world_horiz = WM.getBoundary().getHorizontal();
