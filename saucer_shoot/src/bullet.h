@@ -4,6 +4,7 @@
 
 
 class Bullet : public df::Object {
+
     public:
         Bullet(df::Vector hero_pos, float hero_width);
         auto eventHandler(const df::Event *p_e) -> int override;

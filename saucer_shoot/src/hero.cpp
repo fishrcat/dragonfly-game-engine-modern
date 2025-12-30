@@ -35,6 +35,8 @@ Hero::Hero() {
     // Init fire controller
     fire_slowdown = 15;
     fire_countdown = fire_slowdown;
+    p_reticle = new Reticle();
+    p_reticle->draw();
 }
 
 auto Hero::eventHandler(const df::Event *p_e) -> int {

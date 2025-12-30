@@ -1,6 +1,7 @@
 #pragma once
 #include "EventKeyboard.h"
 #include "Object.h"
+#include "reticle.h"
 
 
 class Hero : public df::Object {
@@ -10,6 +11,7 @@ class Hero : public df::Object {
         auto eventHandler(const df::Event *p_e) -> int override;
 
     private:
+        Reticle *p_reticle;
         int move_slowdown;
         int move_countdown;
         int fire_slowdown;
