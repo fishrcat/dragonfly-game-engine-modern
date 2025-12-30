@@ -1,9 +1,12 @@
-#include <random>
 //Engine
+#include "EventCollision.h"
 #include "EventOut.h"
 #include "WorldManager.h"
 // Project
 #include "saucer.h"
+#include "explosion.h"
+
+#include <random>
 
 
 Saucer::Saucer() {
@@ -24,6 +27,13 @@ auto Saucer::eventHandler(const df::Event *p_e) -> int{
 
     if (p_e->getType() == df::OUT_EVENT) {
         out();
+        return 1;
+    }
+
+    if (p_e->getType() == df::COLLISION_EVENT) {
+        const auto *p_collision_event =
+            dynamic_cast<const df::EventCollision *> (p_e);
+        hit(p_collision_event);
         return 1;
     }
 
@@ -58,4 +68,17 @@ void Saucer::moveToStart() {
     temp_pos.setY(rand_y);
 
     WM.moveObject(this, temp_pos);
+}
+
+void Saucer::hit(const df::EventCollision *p_c) const {
+
+    // If bullet hits saucer - explode and respawn
+    if ((p_c->getObject1()->getType() == "Bullet") ||
+        (p_c->getObject2()->getType() == "Bullet")) {
+
+        Explosion *p_explosion = new Explosion;
+        p_explosion->setPosition(this->getPosition());
+
+        new Saucer;
+    }
 }

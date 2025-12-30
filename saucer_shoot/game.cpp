@@ -40,6 +40,7 @@ void loadResources() {
   RM.loadSprite("assets/sprites-simple/saucer-spr.txt", "saucer");
   RM.loadSprite("assets/sprites-simple/ship-spr.txt", "ship");
   RM.loadSprite("assets/sprites-simple/bullet-spr.txt", "bullet");
+  RM.loadSprite("assets/sprites-simple/explosion-spr.txt", "explosion");
 }
 
 void populateWorld() {
