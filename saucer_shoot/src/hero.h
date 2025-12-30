@@ -8,6 +8,7 @@ class Hero : public df::Object {
 
     public:
         Hero();
+        ~Hero();
         auto eventHandler(const df::Event *p_e) -> int override;
 
     private:

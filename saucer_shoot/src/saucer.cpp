@@ -47,6 +47,7 @@ void Saucer::out() {
     }
 
     moveToStart();
+    new Saucer;
 }
 
 void Saucer::moveToStart() {
@@ -67,6 +68,13 @@ void Saucer::moveToStart() {
     const auto rand_y = rand_offset_y - (getBox().getVertical());
     temp_pos.setY(rand_y);
 
+    // Move right if necessary to avoid init collision
+    df::ObjectList collision_list = WM.getCollisions(this, temp_pos);
+    while (collision_list.getCount() != 0) {
+        temp_pos.setX(temp_pos.getX()+1);
+        collision_list = WM.getCollisions(this, temp_pos);
+    }
+
     WM.moveObject(this, temp_pos);
 }
 
@@ -76,9 +84,16 @@ void Saucer::hit(const df::EventCollision *p_c) const {
     if ((p_c->getObject1()->getType() == "Bullet") ||
         (p_c->getObject2()->getType() == "Bullet")) {
 
-        Explosion *p_explosion = new Explosion;
+        auto *p_explosion = new Explosion;
         p_explosion->setPosition(this->getPosition());
 
         new Saucer;
+    }
+
+    // If saucer hits hero, end the game
+    if (((p_c->getObject1()->getType()) == "Hero") ||
+        ((p_c->getObject2()->getType()) == "Hero")) {
+        WM.markForDelete(p_c->getObject1());
+        WM.markForDelete(p_c->getObject2());
     }
 }

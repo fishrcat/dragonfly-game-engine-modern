@@ -39,6 +39,11 @@ Hero::Hero() {
     p_reticle->draw();
 }
 
+Hero::~Hero() {
+    // Create GameOver object.
+    GM.setGameOver();
+}
+
 auto Hero::eventHandler(const df::Event *p_e) -> int {
 
     if (p_e->getType() == df::KEYBOARD_EVENT) {
