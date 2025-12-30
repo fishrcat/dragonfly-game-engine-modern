@@ -12,7 +12,11 @@ class Hero : public df::Object {
     private:
         int move_slowdown;
         int move_countdown;
+        int fire_slowdown;
+        int fire_countdown;
         void kbd(const df::EventKeyboard *p_keyboard_event);
         void move(int delta_y);
         void step();
+        void fire(df::Vector target);
+        void mouse(const df::EventMouse *p_mouse_event);
 };

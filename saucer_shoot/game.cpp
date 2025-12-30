@@ -35,11 +35,11 @@ auto main(int argc, char *argv[]) -> int {
   return 0;
 }
 
-
 void loadResources() {
 
   RM.loadSprite("assets/sprites-simple/saucer-spr.txt", "saucer");
   RM.loadSprite("assets/sprites-simple/ship-spr.txt", "ship");
+  RM.loadSprite("assets/sprites-simple/bullet-spr.txt", "bullet");
 }
 
 void populateWorld() {
