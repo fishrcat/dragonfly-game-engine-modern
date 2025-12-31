@@ -1,14 +1,13 @@
 project(saucer_shoot LANGUAGES CXX)
 
 file(GLOB SOURCES
-        "*.cpp"
+        "src/*.cpp"
         "src/*.cpp"
 )
-add_executable(saucer_shoot ${SOURCES}
-src/nuke.cpp
-src/nuke.h
-src/points.cpp
-src/points.h)
+add_executable(saucer_shoot
+        game.cpp
+        ${SOURCES}
+)
 
 target_include_directories(saucer_shoot PRIVATE ${DRAGONFLY_INCLUDE_DIR})
 target_link_libraries(saucer_shoot PRIVATE

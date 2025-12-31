@@ -7,6 +7,7 @@
 #include "src/nuke.h"
 #include "src/points.h"
 #include "src/saucer.h"
+#include "src/star.h"
 
 void loadResources();
 
@@ -43,8 +44,15 @@ void loadResources() {
 }
 
 void populateWorld() {
+
   // TODO: Move to game engine config loader
+  constexpr int num_stars = 16;
   constexpr int num_saucers = 16;
+
+  for (int i = 0; i < num_stars; i++) {
+    new Star;
+  }
+
   for (int i = 0; i < num_saucers; i++) {
     new Saucer;
   }
