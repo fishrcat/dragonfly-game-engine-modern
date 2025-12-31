@@ -8,7 +8,7 @@ class Hero : public df::Object {
 
     public:
         Hero();
-        ~Hero();
+        ~Hero() override;
         auto eventHandler(const df::Event *p_e) -> int override;
 
     private:
@@ -17,9 +17,11 @@ class Hero : public df::Object {
         int move_countdown;
         int fire_slowdown;
         int fire_countdown;
+        int nuke_count;
         void kbd(const df::EventKeyboard *p_keyboard_event);
         void move(int delta_y);
         void step();
         void fire(df::Vector target);
         void mouse(const df::EventMouse *p_mouse_event);
+        void nuke();
 };

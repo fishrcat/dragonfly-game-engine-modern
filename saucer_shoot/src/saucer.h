@@ -13,4 +13,5 @@ class Saucer : public df::Object {
         void moveToStart();
         void out();
         void hit(const df::EventCollision *p_c) const;
+        void destroy();
 };

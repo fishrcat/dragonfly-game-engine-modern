@@ -6,6 +6,7 @@
 #include "WorldManager.h"
 // Project
 #include "hero.h"
+#include "event_nuke.h"
 #include "bullet.h"
 
 #include <algorithm>
@@ -37,6 +38,7 @@ Hero::Hero() {
     fire_countdown = fire_slowdown;
     p_reticle = new Reticle();
     p_reticle->draw();
+    nuke_count = 1;
 }
 
 Hero::~Hero() {
@@ -54,7 +56,7 @@ auto Hero::eventHandler(const df::Event *p_e) -> int {
     }
 
     if (p_e->getType() == df::MSE_EVENT) {
-        const df::EventMouse *p_mouse_event =
+        const auto p_mouse_event =
             dynamic_cast<const df::EventMouse *> (p_e);
         mouse(p_mouse_event);
         return 1;
@@ -84,6 +86,11 @@ void Hero::kbd(const df::EventKeyboard *p_keyboard_event) {
     case df::Keyboard::S:  // Down
         if (p_keyboard_event->getKeyboardAction() == df::KEY_PRESSED) {
             move(1);
+        }
+        break;
+    case df::Keyboard::SPACE:  // Down
+        if (p_keyboard_event->getKeyboardAction() == df::KEY_PRESSED) {
+            nuke();
         }
         break;
     }
@@ -126,11 +133,11 @@ void Hero::fire(df::Vector target) {
     }
     fire_countdown = fire_slowdown;
 
-    df::Vector v = target - getPosition();
-    v.normalize();
-    v.scale(1);
-    const auto p = new Bullet(getPosition(), getBox().getHorizontal());
-    p->setVelocity(v);
+    df::Vector vel = target - getPosition();
+    vel.normalize();
+    vel.scale(1);
+    auto *const bullet = new Bullet(getPosition(), getBox().getHorizontal());
+    bullet->setVelocity(vel);
 }
 
 void Hero::mouse(const df::EventMouse *p_mouse_event) {
@@ -138,4 +145,14 @@ void Hero::mouse(const df::EventMouse *p_mouse_event) {
         (p_mouse_event->getMouseButton() == df::Mouse::LEFT)) {
         fire(p_mouse_event->getMousePosition());
     }
+}
+
+void Hero::nuke() {
+    if (nuke_count == 0) {
+        return;
+    }
+    nuke_count--;
+
+    const EventNuke nuke;
+    WM.onEvent(&nuke);
 }

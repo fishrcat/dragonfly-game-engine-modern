@@ -5,6 +5,7 @@
 // Project
 #include "saucer.h"
 #include "explosion.h"
+#include "event_nuke.h"
 
 #include <random>
 
@@ -14,6 +15,9 @@ Saucer::Saucer() {
     // Set up
     Object::setSprite("saucer");
     Object::setType("Saucer");
+
+    // Input hooks
+    registerInterest(NUKE_EVENT);
 
     // Initialize motion
     constexpr float left_vel = -0.25;
@@ -34,6 +38,11 @@ auto Saucer::eventHandler(const df::Event *p_e) -> int{
         const auto *p_collision_event =
             dynamic_cast<const df::EventCollision *> (p_e);
         hit(p_collision_event);
+        return 1;
+    }
+
+    if (p_e->getType() == NUKE_EVENT) {
+        destroy();
         return 1;
     }
 
@@ -96,4 +105,16 @@ void Saucer::hit(const df::EventCollision *p_c) const {
         WM.markForDelete(p_c->getObject1());
         WM.markForDelete(p_c->getObject2());
     }
+}
+
+void Saucer::destroy() {
+    // Create explosion.
+    auto *p_explosion = new Explosion;
+    p_explosion -> setPosition(this -> getPosition());
+
+    // Delete self.
+    WM.markForDelete(this);
+
+    // Saucers appear stay around perpetually
+    new Saucer;
 }
