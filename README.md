@@ -33,3 +33,7 @@ clang-format -i saucer_shoot/**/*.cpp saucer_shoot/**/*.h
 clang-tidy saucer_shoot/**/*.cpp -- -std=c++17 -Idragonfly/include
 g++ -std=c++17 -Wextra -Wpedantic -Werror -c saucer_shoot/*.cpp -Idragonfly/include
 ```
+
+## Gameplay Examples
+
+[Saucer Shoot](https://github.com/fishrcat/dragonfly-cpp-engine-course/pull/1)
