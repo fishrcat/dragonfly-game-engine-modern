@@ -1,5 +1,6 @@
 #pragma once
 #include "EventKeyboard.h"
+#include "EventMouse.h"
 #include "Object.h"
 #include "reticle.h"
 

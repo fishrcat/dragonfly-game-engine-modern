@@ -4,9 +4,9 @@
 #include "EventView.h"
 #include "WorldManager.h"
 // Project
-#include "explosion.h"
-#include "nuke.h"
-#include "points.h"
+#include "display/points.h"
+#include "player/explosion.h"
+#include "player/nuke.h"
 #include "saucer.h"
 
 #include <random>

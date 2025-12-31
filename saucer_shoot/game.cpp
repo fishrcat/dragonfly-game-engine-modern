@@ -3,11 +3,7 @@
 #include "LogManager.h"
 #include "ResourceManager.h"
 // Project
-#include "src/hero.h"
-#include "src/nuke.h"
-#include "src/points.h"
-#include "src/saucer.h"
-#include "src/star.h"
+#include "display/game_start.h"
 
 void loadResources();
 
@@ -41,24 +37,8 @@ void loadResources() {
   RM.loadSprite("assets/sprites-simple/ship-spr.txt", "ship");
   RM.loadSprite("assets/sprites-simple/bullet-spr.txt", "bullet");
   RM.loadSprite("assets/sprites-simple/explosion-spr.txt", "explosion");
+  RM.loadSprite("assets/sprites-simple/gameover-spr.txt", "gameover");
+  RM.loadSprite("assets/sprites-simple/gamestart-spr.txt", "gamestart");
 }
 
-void populateWorld() {
-
-  // TODO: Move to game engine config loader
-  constexpr int num_stars = 16;
-  constexpr int num_saucers = 16;
-
-  for (int i = 0; i < num_stars; i++) {
-    new Star;
-  }
-
-  for (int i = 0; i < num_saucers; i++) {
-    new Saucer;
-  }
-  new Hero;
-
-  // Displays
-  new PointsDisplay;
-  new NukesDisplay;
-}
+void populateWorld() { new GameStart; }

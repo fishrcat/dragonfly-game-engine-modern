@@ -14,15 +14,17 @@ PointsDisplay::PointsDisplay() {
   registerInterest(df::STEP_EVENT);
 };
 
-int PointsDisplay::eventHandler(const df::Event *p_e) {
+auto PointsDisplay::eventHandler(const df::Event *p_e) -> int {
 
-  if (ViewObject::eventHandler(p_e)) {
+  if (ViewObject::eventHandler(p_e) != 0) {
     return 1;
   }
 
   if (p_e->getType() == df::STEP_EVENT) {
-    if (dynamic_cast<const df::EventStep *>(p_e)->getStepCount() % 30 == 0)
+    if (dynamic_cast<const df::EventStep *>(p_e)->getStepCount() % 30 == 0) {
       setValue(getValue() + 1);
+    }
+
     return 1;
   }
 

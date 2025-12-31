@@ -7,6 +7,7 @@
 #include "WorldManager.h"
 // Project
 #include "bullet.h"
+#include "display/game_over.h"
 #include "hero.h"
 #include "nuke.h"
 
@@ -42,8 +43,9 @@ Hero::Hero() {
 }
 
 Hero::~Hero() {
-  // Create GameOver object.
-  GM.setGameOver();
+
+  new GameOver;
+  WM.markForDelete(p_reticle);
 }
 
 auto Hero::eventHandler(const df::Event *p_e) -> int {
@@ -73,7 +75,7 @@ void Hero::kbd(const df::EventKeyboard *p_keyboard_event) {
   switch (p_keyboard_event->getKey()) {
   case df::Keyboard::Q: // Quit
     if (p_keyboard_event->getKeyboardAction() == df::KEY_PRESSED) {
-      GM.setGameOver();
+      WM.markForDelete(this);
     }
     break;
   case df::Keyboard::W: // Up
@@ -90,6 +92,8 @@ void Hero::kbd(const df::EventKeyboard *p_keyboard_event) {
     if (p_keyboard_event->getKeyboardAction() == df::KEY_PRESSED) {
       nuke();
     }
+    break;
+  default:
     break;
   }
 }

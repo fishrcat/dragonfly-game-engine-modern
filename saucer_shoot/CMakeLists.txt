@@ -1,15 +1,16 @@
 project(saucer_shoot LANGUAGES CXX)
 
-file(GLOB SOURCES
-        "src/*.cpp"
-        "src/*.cpp"
+file(GLOB_RECURSE SOURCES
+    "src/*.cpp"
 )
 add_executable(saucer_shoot
-        game.cpp
-        ${SOURCES}
+    game.cpp
+    ${SOURCES}
 )
 
-target_include_directories(saucer_shoot PRIVATE ${DRAGONFLY_INCLUDE_DIR})
+target_include_directories(saucer_shoot PRIVATE
+    src
+    ${DRAGONFLY_INCLUDE_DIR})
 target_link_libraries(saucer_shoot PRIVATE
     ${DRAGONFLY_LIBRARY}
     SFML::Graphics SFML::Window SFML::System SFML::Audio
