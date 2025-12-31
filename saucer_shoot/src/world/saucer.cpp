@@ -2,6 +2,7 @@
 #include "EventCollision.h"
 #include "EventOut.h"
 #include "EventView.h"
+#include "ResourceManager.h"
 #include "WorldManager.h"
 // Project
 #include "display/points.h"
@@ -32,7 +33,7 @@ Saucer::Saucer() {
 Saucer::~Saucer() {
 
   // Send event with points to view objects
-  df::EventView event_view(POINTS_STRING, saucer_points, true);
+  const df::EventView event_view(POINTS_STRING, saucer_points, true);
   WM.onEvent(&event_view);
 }
 
@@ -106,6 +107,11 @@ void Saucer::hit(const df::EventCollision *p_c) const {
 
     auto *p_explosion = new Explosion;
     p_explosion->setPosition(this->getPosition());
+
+    // Sound effect
+    if (df::Sound *p_sound = RM.getSound("explode")) {
+      p_sound->play();
+    }
 
     new Saucer;
   }

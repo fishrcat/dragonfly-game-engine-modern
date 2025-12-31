@@ -2,7 +2,6 @@
 #include "EventMouse.h"
 #include "EventStep.h"
 #include "EventView.h"
-#include "GameManager.h"
 #include "ResourceManager.h"
 #include "WorldManager.h"
 // Project
@@ -130,16 +129,23 @@ void Hero::step() {
 
 void Hero::fire(const df::Vector target) {
 
+  // Limit fire rate
   if (fire_countdown > 0) {
     return;
   }
   fire_countdown = fire_slowdown;
 
+  // Source from ship
   df::Vector vel = target - getPosition();
   vel.normalize();
   vel.scale(1);
   auto *const bullet = new Bullet(getPosition(), getBox().getHorizontal());
   bullet->setVelocity(vel);
+
+  // Sound effect
+  if (df::Sound *p_sound = RM.getSound("fire"); p_sound != nullptr) {
+    p_sound->play();
+  }
 }
 
 void Hero::mouse(const df::EventMouse *p_mouse_event) {
@@ -162,4 +168,9 @@ void Hero::nuke() {
 
   const df::EventView event_view("Nukes", -1, true);
   WM.onEvent(&event_view);
+
+  // Sound effect
+  if (df::Sound *p_sound = RM.getSound("nuke")) {
+    p_sound->play();
+  }
 }

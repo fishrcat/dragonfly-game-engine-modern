@@ -16,8 +16,10 @@ Star::Star() {
   Object::setAltitude(0);
 
   // Add parallax
-  Object::setVelocity(
-      df::Vector(static_cast<float>(-1.0) / (rand() % 10 + 1), 0));
+  std::mt19937 rng{std::random_device{}()};
+  std::uniform_int_distribution<int> dist(0, RAND_MAX);
+  Object::setVelocity(df::Vector(
+      static_cast<float>(-1.0) / static_cast<float>((dist(rng) % 10) + 1), 0));
 
   // Scatter over window view
   const df::Vector pos(

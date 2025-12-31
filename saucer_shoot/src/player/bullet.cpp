@@ -4,8 +4,6 @@
 // Project
 #include "bullet.h"
 
-#include "EventMouse.h"
-
 Bullet::Bullet(const df::Vector hero_pos, const float hero_width) {
 
   // Set up
@@ -13,8 +11,8 @@ Bullet::Bullet(const df::Vector hero_pos, const float hero_width) {
   Object::setType("Bullet");
 
   // Set starting position in world relative to ship
-  df::Vector p(hero_pos.getX() + hero_width / 2, hero_pos.getY());
-  Object::setPosition(p);
+  const df::Vector pos(hero_pos.getX() + (hero_width / 2), hero_pos.getY());
+  Object::setPosition(pos);
 
   // Init motion controller
   setSpeed(1);

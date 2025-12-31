@@ -33,12 +33,23 @@ auto main(int argc, char *argv[]) -> int {
 }
 
 void loadResources() {
+
+  // Sprites
   RM.loadSprite("assets/sprites-simple/saucer-spr.txt", "saucer");
   RM.loadSprite("assets/sprites-simple/ship-spr.txt", "ship");
   RM.loadSprite("assets/sprites-simple/bullet-spr.txt", "bullet");
   RM.loadSprite("assets/sprites-simple/explosion-spr.txt", "explosion");
   RM.loadSprite("assets/sprites-simple/gameover-spr.txt", "gameover");
   RM.loadSprite("assets/sprites-simple/gamestart-spr.txt", "gamestart");
+
+  // Sound effects
+  RM.loadSound("assets/sounds/fire.wav", "fire");
+  RM.loadSound("assets/sounds/explode.wav", "explode");
+  RM.loadSound("assets/sounds/nuke.wav", "nuke");
+  RM.loadSound("assets/sounds/game-over.wav", "game over");
+
+  // Music
+  RM.loadMusic("assets/sounds/start-music.wav", "start music");
 }
 
 void populateWorld() { new GameStart; }

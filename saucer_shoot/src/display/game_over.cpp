@@ -1,11 +1,12 @@
 // Engine
 #include "EventStep.h"
-#include "GameManager.h"
+#include "ResourceManager.h"
+#include "Sound.h"
 #include "WorldManager.h"
+#include "utility.h"
 // Project
 #include "game_over.h"
-
-#include "utility.h"
+#include "game_start.h"
 
 GameOver::GameOver() {
 
@@ -17,6 +18,11 @@ GameOver::GameOver() {
   // Explosion effect
   df::addParticles(df::SPARKS, getPosition(), 4, df::RED);
   df::addParticles(df::SPARKS, getPosition(), 2, df::YELLOW);
+
+  // Sound effect
+  if (df::Sound *p_sound = RM.getSound("game over")) {
+    p_sound->play();
+  }
 
   if (Object::setSprite("gameover") == 0) {
     time_to_live = getAnimation().getSprite()->getFrameCount() *
@@ -40,6 +46,7 @@ GameOver::~GameOver() {
     }
     if (p_o->getType() == "GameStart") {
       p_o->setActive(true);
+      dynamic_cast<GameStart *>(p_o)->playMusic();
     }
   }
 }
@@ -61,3 +68,5 @@ void GameOver::step() {
 }
 
 auto GameOver::draw() -> int { return df::Object::draw(); }
+
+void GameStart::playMusic() const { p_music->play(); }

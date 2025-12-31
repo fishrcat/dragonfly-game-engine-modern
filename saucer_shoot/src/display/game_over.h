@@ -12,5 +12,5 @@ public:
 private:
   int time_to_live;
   void step();
-  int draw() override;
+  auto draw() -> int override;
 };

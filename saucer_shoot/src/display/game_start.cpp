@@ -1,14 +1,12 @@
 // Engine
-#include "EventStep.h"
 #include "GameManager.h"
+#include "ResourceManager.h"
 #include "WorldManager.h"
 // Project
 #include "game_start.h"
-
 #include "player/hero.h"
 #include "player/nuke.h"
 #include "points.h"
-#include "utility.h"
 #include "world/saucer.h"
 #include "world/star.h"
 
@@ -21,6 +19,10 @@ GameStart::GameStart() {
 
   // Input hooks
   registerInterest(df::KEYBOARD_EVENT);
+
+  // Music
+  p_music = RM.getMusic("start music");
+  playMusic();
 }
 
 auto GameStart::eventHandler(const df::Event *p_e) -> int {
@@ -70,4 +72,5 @@ void GameStart::start() {
   new NukesDisplay;
 
   ViewObject::setActive(false);
+  p_music->pause();
 }
