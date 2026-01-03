@@ -10,29 +10,43 @@ Mark Claypool. Dragonfly - Program a Game Engine from Scratch, Interactive Media
 
 ```
 /dragonfly <- dragonfly library
-/saucer_shoot <- intro 2d shooter game
+/saucer_shoot <- intro 2d shooter game utilizing the dragonfly library
 ```
 
-## Development Workflow
+## Development Workflows
+
+### Dragonfly Library
+
+#### 1) Build
 
 ```bash
-# Configure and build
-mkdir -p build && cd build
-cmake .. -DCMAKE_BUILD_TYPE=Release
-cmake --build .
-
-# Build specific project
-cmake --build . --target saucer_shoot
-
-# Run executable
-cd saucer_shoot
-./saucer_shoot
-
-# Checks
-clang-format -i saucer_shoot/**/*.cpp saucer_shoot/**/*.h
-clang-tidy saucer_shoot/**/*.cpp -- -std=c++17 -Idragonfly/include
-g++ -std=c++17 -Wextra -Wpedantic -Werror -c saucer_shoot/*.cpp -Idragonfly/include
+cd dragonfly
+mkdir -p build  # Run once
+cmake -S . -B build -DDRAGONFLY_BUILD_TESTS=ON  # Run once
+cmake --build build
 ```
+
+#### 2) Run Tests
+```bash
+ctest --test-dir build --output-on-failure
+```
+
+#### 3) Format & Lint
+
+```bash
+pipx install pre-commit  # Run once
+pre-commit run --all-files
+```
+
+#### 4) PR
+
+Github workflows will run on commit:
+
+1. Run pre-commit checks
+2. Linux build and tests (req. 1 passing)
+3. Multi-platform builds (req. 2 passing)
+
+### Saucer Shoot Game
 
 ## Gameplay Examples
 

@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  changes:
+    runs-on: ubuntu-latest
+    outputs:
+      dragonfly: ${{ steps.filter.outputs.dragonfly }}
+      saucer: ${{ steps.filter.outputs.saucer }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            dragonfly:
+              - 'dragonfly/**'
+            saucer:
+              - 'saucer_shoot/**'
+
+  dragonfly:
+    needs: changes
+    if: needs.changes.outputs.dragonfly == 'true'
+    uses: ./.github/workflows/dragonfly-checks.yaml
+
+  saucer:
+    needs: changes
+    if: needs.changes.outputs.saucer == 'true'
+    uses: ./.github/workflows/saucer-shoot-checks.yaml

@@ -1,6 +1,6 @@
 project(saucer_shoot LANGUAGES CXX)
 
-file(GLOB_RECURSE SOURCES
+file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS
     "src/*.cpp"
 )
 add_executable(saucer_shoot
@@ -8,15 +8,15 @@ add_executable(saucer_shoot
     ${SOURCES}
 )
 
-target_include_directories(saucer_shoot PRIVATE
-    src
-    ${DRAGONFLY_INCLUDE_DIR})
-target_link_libraries(saucer_shoot PRIVATE
-    ${DRAGONFLY_LIBRARY}
-    SFML::Graphics SFML::Window SFML::System SFML::Audio
-    ${PLATFORM_LINK_LIBS}
+target_link_libraries(saucer_shoot
+    PRIVATE
+    dragonfly::dragonfly
+    sfml-graphics
+    sfml-window
+    sfml-system
+    sfml-audio
 )
 
 set_target_properties(saucer_shoot PROPERTIES
-    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/${PROJECT_DIR}"
+    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/saucer_shoot"
 )

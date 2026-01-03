@@ -4,7 +4,7 @@
 # version 2.4
 #
 
-# 
+#
 # Lines beginning with '#' are comments.
 # Others are:
 # "variable_1:value_1,"
@@ -23,7 +23,7 @@ window_vertical_chars:24,
 # Font scale multiplier (2.0 is "normal", 1.0 for "square").
 font_scale:2.0,
 
-# Window background color. 
+# Window background color.
 # (Choices: black, red, green, yellow, blue, magenta, cyan, white).
 window_background_color:black,
 
@@ -32,7 +32,7 @@ frame_time:33,
 
 # Window style (default is 4).
 # none - borderless (no border or title bar)
-# 1 - title 
+# 1 - title
 # 2 - title, resize, max
 # 4 - title, close
 # 7 - title, resize, max, close

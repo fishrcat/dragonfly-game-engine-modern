@@ -1,0 +1,15 @@
+name: Saucer Shoot Checks
+
+on:
+  workflow_call:
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Stub
+        run: echo "Re-enable Saucer Shoot workflows when dragonfly library is re-implemented"
+
+  build:
+    needs: checks
+    uses: ./.github/workflows/saucer-shoot-build.yaml
