@@ -1,10 +1,14 @@
-# Dragonfly Course
+# Dragonfly Game Engine
 
-Artifacts from following the Dragonfly C++ Text-Based Game Engine Course
+Modernized version of the Dragonfly C++ Text-Based Game Engine.
+
+Ports Dragonfly library and example games to C++23 with CMake build and GoogleTest development workflows.
 
 ---
 
 Mark Claypool. Dragonfly - Program a Game Engine from Scratch, Interactive Media and Game Development, Worcester Polytechnic Institute, 2014. Online at: http://dragonfly.wpi.edu/book/
+
+---
 
 ## Structure
 
