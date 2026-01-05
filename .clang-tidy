@@ -1,0 +1,16 @@
+Checks: >
+  clang-analyzer-*,
+  cppcoreguidelines-*,
+  modernize-*,
+  performance-*,
+  readability-*,
+  bugprone-*,
+  misc-*,
+  hicpp-*
+HeaderFilterRegex: '.*'
+FormatStyle: file
+CheckOptions:
+  - key: modernize-use-trailing-return-type.MinTypeNameLength
+    value: '0'
+  - key: readability-identifier-naming.NamespaceCase
+    value: CamelCase

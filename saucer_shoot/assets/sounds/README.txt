@@ -4,7 +4,7 @@ Mark Claypool
 
 Music:
 
-start-music - "Jungle Starvation", by RepaidGateman 
+start-music - "Jungle Starvation", by RepaidGateman
 http://www.flashkit.com/loops/Ambient/Electronica/Jungle_S-RepaidGa-10582/index.php
 
 Sound Effects:

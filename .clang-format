@@ -1,0 +1,14 @@
+BasedOnStyle: Google
+Standard: c++20
+IndentWidth: 4
+TabWidth: 4
+UseTab: Never
+ColumnLimit: 100
+AllowShortFunctionsOnASingleLine: InlineOnly
+DerivePointerAlignment: false
+PointerAlignment: Left
+AllowShortIfStatementsOnASingleLine: false
+BreakBeforeBraces: Allman
+AlignConsecutiveAssignments: true
+SortIncludes: true
+IncludeBlocks: Preserve

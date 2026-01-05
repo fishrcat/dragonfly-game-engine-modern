@@ -1,0 +1,34 @@
+name: Dragonfly Library - Checks
+
+on:
+  workflow_call:
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install -y clang clang-tidy
+
+      - name: Configure CMake (generate compile_commands.json)
+        working-directory: dragonfly
+        run: |
+          cmake -S . -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+
+      - name: Install pre-commit
+        run: pip install pre-commit
+
+      - name: Run pre-commit
+        working-directory: dragonfly
+        run: pre-commit run --all-files
+
+  build:
+    needs: checks
+    uses: ./.github/workflows/dragonfly-build.yaml
