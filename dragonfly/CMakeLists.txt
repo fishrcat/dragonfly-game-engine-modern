@@ -18,9 +18,11 @@ target_include_directories(dragonfly
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
 )
 
-target_compile_options(dragonfly PRIVATE
-    -Wall -Wextra -Wpedantic
-)
+if (CMAKE_CXX_COMPILER_ID MATCHES "Clang|GNU")
+  target_compile_options(dragonfly PRIVATE -Wall -Wextra -Wpedantic)
+elseif (MSVC)
+  target_compile_options(dragonfly PRIVATE /W4 /permissive- /WX)
+endif()
 
 option(DRAGONFLY_BUILD_TESTS "Build Dragonfly tests" ON)
 
