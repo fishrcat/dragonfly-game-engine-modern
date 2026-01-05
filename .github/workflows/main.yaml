@@ -1,8 +1,6 @@
-name: CI
+name: Dragonfly Library and Sample Games
 
-on:
-  push:
-  pull_request:
+on: [pull_request]
 
 jobs:
   changes:

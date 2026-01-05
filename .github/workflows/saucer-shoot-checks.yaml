@@ -1,4 +1,4 @@
-name: Saucer Shoot Checks
+name: Saucer Shoot - Checks
 
 on:
   workflow_call:

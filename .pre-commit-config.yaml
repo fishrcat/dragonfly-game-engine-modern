@@ -6,8 +6,21 @@ repos:
       - id: end-of-file-fixer
       - id: check-merge-conflict
       - id: check-yaml
-  - repo: git@github.com:pocc/pre-commit-hooks.git
-    rev: master
+
+  - repo: local
     hooks:
       - id: clang-format
+        name: clang-format
+        entry: clang-format
+        language: system
+        types_or: [c, c++, header]
+        args: [-i]
+        exclude: ^saucer_shoot/  # TODO: Re-enable Saucer Shoot workflows when dragonfly library is re-implemented
+
       - id: clang-tidy
+        name: clang-tidy
+        entry: clang-tidy
+        language: system
+        types_or: [c, c++]
+        args: ["-p", "dragonfly/build", "--quiet"]
+        exclude: ^saucer_shoot/  # TODO: Re-enable Saucer Shoot workflows when dragonfly library is re-implemented

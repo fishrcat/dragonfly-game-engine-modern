@@ -1,4 +1,4 @@
-name: Dragonfly Checks
+name: Dragonfly Library - Checks
 
 on:
   workflow_call:
@@ -13,6 +13,14 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install -y clang clang-tidy
+
+      - name: Configure CMake (generate compile_commands.json)
+        working-directory: dragonfly
+        run: |
+          cmake -S . -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
 
       - name: Install pre-commit
         run: pip install pre-commit

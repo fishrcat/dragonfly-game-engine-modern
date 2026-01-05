@@ -1,4 +1,4 @@
-name: Dragonfly Build
+name: Dragonfly Library - Build and Test
 
 on:
   workflow_call:

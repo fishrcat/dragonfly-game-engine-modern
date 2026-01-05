@@ -2,7 +2,7 @@
 
 Modernized version of the Dragonfly C++ Text-Based Game Engine.
 
-Ports Dragonfly library and example games to C++23 with CMake build and GoogleTest development workflows.
+Ports Dragonfly library and example games to C++20 with CMake build and GoogleTest development workflows.
 
 ---
 

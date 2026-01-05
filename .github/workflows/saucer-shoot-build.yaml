@@ -1,4 +1,4 @@
-name: Saucer Shoot Build
+name: Saucer Shoot - Build and Test
 
 on:
   workflow_call:
