@@ -1,16 +1,33 @@
+---
 Checks: >
+  -*,
   clang-analyzer-*,
-  cppcoreguidelines-*,
+  bugprone-*,
   modernize-*,
   performance-*,
   readability-*,
-  bugprone-*,
-  misc-*,
-  hicpp-*
+  misc-include-cleaner,
+  portability-*,
+  cppcoreguidelines-*
+
+WarningsAsErrors: ''
 HeaderFilterRegex: '.*'
-FormatStyle: file
+
 CheckOptions:
-  - key: modernize-use-trailing-return-type.MinTypeNameLength
-    value: '0'
-  - key: readability-identifier-naming.NamespaceCase
-    value: CamelCase
+  - key: modernize-use-auto
+    value: 'false'
+
+  - key: readability-function-size.LineThreshold
+    value: '200'
+  - key: readability-function-size.StatementThreshold
+    value: '50'
+
+  - key: readability-braces-around-statements.ShortStatementLines
+    value: '1'
+
+  - key: cppcoreguidelines-avoid-magic-numbers.IgnoreAllFloatingPointValues
+    value: 'true'
+
+  - key: cppcoreguidelines-owning-memory.IgnoreSmartPointers
+    value: 'true'
+...
