@@ -3,12 +3,12 @@ add_library(dragonfly::dragonfly ALIAS dragonfly)
 
 target_sources(dragonfly
     PRIVATE
-    src/vector.cpp
+    src/manager.cpp
     PUBLIC
     FILE_SET HEADERS
     BASE_DIRS include
     FILES
-    include/df/vector.h
+    include/manager.h
 )
 
 target_compile_features(dragonfly PUBLIC cxx_std_20)

@@ -9,7 +9,7 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(googletest)
 
 add_executable(dragonfly_tests
-    vector_test.cpp
+    manager_test.cpp
 )
 
 target_link_libraries(dragonfly_tests
