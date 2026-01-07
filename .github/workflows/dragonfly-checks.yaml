@@ -18,9 +18,7 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y clang clang-tidy
 
       - name: Configure CMake (generate compile_commands.json)
-        working-directory: dragonfly
-        run: |
-          cmake -S . -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+        run: cmake -S . -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
 
       - name: Install pre-commit
         run: pip install pre-commit

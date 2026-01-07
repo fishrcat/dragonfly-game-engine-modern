@@ -7,9 +7,16 @@ add_subdirectory(dragonfly)
 # add_subdirectory(saucer_shoot)
 
 enable_testing()
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-# Custom target to build dragonfly and run its tests
-add_custom_target(all-tests
+
+add_custom_target(build-dragonfly
+    COMMAND ${CMAKE_COMMAND} --build ${CMAKE_BINARY_DIR}/dragonfly --parallel
+    COMMENT "Building Dragonfly library..."
+    VERBATIM
+)
+
+add_custom_target(all-dragonfly
     COMMAND ${CMAKE_COMMAND} --build ${CMAKE_BINARY_DIR}/dragonfly --parallel
     COMMAND ${CMAKE_CTEST_COMMAND} --test-dir ${CMAKE_BINARY_DIR}/dragonfly --output-on-failure
     COMMENT "Building Dragonfly library and running all tests..."
