@@ -12,6 +12,8 @@
 #include <ctime>
 #include <string>
 
+#define LM df::LogManager::getInstance()
+
 namespace df {
 
 // Standard log levels
@@ -45,7 +47,7 @@ class LogManager : public df::Manager {
     LogManager(const LogManager&) = delete;             // Disable copy
     LogManager& operator=(const LogManager&) = delete;  // Disable assignment
 
-    int log_level{static_cast<int>(LogLevel::INFO)};
+    LogLevel log_level{LogLevel::INFO};
     bool m_did_flush{true};
     FILE* m_log_file{nullptr};
 
@@ -56,6 +58,9 @@ class LogManager : public df::Manager {
 
     auto startUp() -> int override;
     void shutDown() override;
+
+    void setLogLevel(LogLevel level);
+    auto getLogLevel() const -> LogLevel;
 
     void setFlush(bool do_flush = true);
 

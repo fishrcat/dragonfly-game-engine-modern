@@ -32,3 +32,16 @@ if (DRAGONFLY_BUILD_TESTS)
   enable_testing()
   add_subdirectory(tests)
 endif()
+
+# Build the test game executable
+add_executable(dragonfly_test_game
+    test_game.cpp
+)
+
+target_link_libraries(dragonfly_test_game
+    PRIVATE dragonfly::dragonfly
+)
+
+target_compile_features(dragonfly_test_game
+    PRIVATE cxx_std_20
+)

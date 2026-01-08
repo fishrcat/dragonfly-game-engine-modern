@@ -47,14 +47,25 @@ void LogManager::shutDown() {
     Manager::shutDown();
 }
 
+void LogManager::setLogLevel(LogLevel level) {
+    if (level == log_level) return;
+
+    writeLog(LogLevel::INFO, "Log level changed from %s to %s",
+             levelToString(log_level), levelToString(level));
+
+    log_level = level;
+}
+
+auto LogManager::getLogLevel() const -> LogLevel { return log_level; }
+
 // Debug Mode: flush to file on every write in case of crash
 void LogManager::setFlush(bool do_flush) { m_did_flush = do_flush; }
 
 auto LogManager::writeLog(LogLevel level, const char* fmt, ...) -> int {
-    if (level < static_cast<LogLevel>(log_level) || m_log_file == nullptr)
-        return 0;
+    if (level < log_level || m_log_file == nullptr) return 0;
 
     // Timestamp
+    // TODO: Replace with std::format chrono or engine clock impelementation
     constexpr int kTimeBufferSize = 48;
     constexpr int kMillisecondsInSecond = 1000;
 
@@ -73,28 +84,32 @@ auto LogManager::writeLog(LogLevel level, const char* fmt, ...) -> int {
                   local_tm.tm_min, local_tm.tm_sec, static_cast<int>(ms));
 
     // Format varargs
+    constexpr std::size_t kMessageBufferSize = 1024;
+    char message_buf[kMessageBufferSize];
+
     va_list args;
     va_start(args, fmt);
+    const int msg_len =
+        std::vsnprintf(message_buf, sizeof(message_buf), fmt, args);
+    va_end(args);
+
+    if (msg_len < 0) return 0;
 
     // Print to stderr DEBUG or lower
     if (level == LogLevel::TRACE || level == LogLevel::DEBUG) {
-        fprintf(stderr, "%s : %s : ", time_buf, levelToString(level));
-        vfprintf(stderr, fmt, args);
-        fprintf(stderr, "\n");
+        std::fprintf(stderr, "%s : %s : %s\n", time_buf, levelToString(level),
+                     message_buf);
     }
 
     // Print to log file
-    fprintf(m_log_file, "%s : %s : ", time_buf, levelToString(level));
-    vfprintf(m_log_file, fmt, args);
-    fprintf(m_log_file, "\n");
-
-    va_end(args);
+    std::fprintf(m_log_file, "%s : %s : %s\n", time_buf, levelToString(level),
+                 message_buf);
 
     // Flush if enabled
     if (m_did_flush) {
         if (level == LogLevel::TRACE || level == LogLevel::DEBUG)
-            fflush(stderr);
-        fflush(m_log_file);
+            std::fflush(stderr);
+        std::fflush(m_log_file);
     }
 
     return 1;
