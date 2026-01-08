@@ -1,3 +1,5 @@
+// manager.cpp — Manager class for engine subsystems
+
 #include "manager.h"
 
 namespace df {

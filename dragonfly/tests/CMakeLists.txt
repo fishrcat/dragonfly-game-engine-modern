@@ -9,6 +9,7 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(googletest)
 
 add_executable(dragonfly_tests
+    log_manager_test.cpp
     manager_test.cpp
 )
 

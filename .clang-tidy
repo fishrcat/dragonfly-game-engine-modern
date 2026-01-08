@@ -33,4 +33,7 @@ CheckOptions:
 
   - key: cppcoreguidelines-owning-memory.IgnoreSmartPointers
     value: 'true'
+
+  - key: cppcoreguidelines-special-member-functions
+    value: 'false'
 ...
