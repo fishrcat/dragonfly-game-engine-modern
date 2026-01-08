@@ -1,0 +1,29 @@
+#include "manager.h"
+
+#include <gtest/gtest.h>
+
+class TestManager : public df::Manager {
+    public:
+    using df::Manager::setType;
+};
+
+class ManagerTest : public ::testing::Test {
+    protected:
+    TestManager manager;
+};
+
+TEST_F(ManagerTest, StartUpAndShutDown) {
+    EXPECT_FALSE(manager.isStarted());
+
+    manager.startUp();
+    EXPECT_TRUE(manager.isStarted());
+
+    manager.shutDown();
+    EXPECT_FALSE(manager.isStarted());
+}
+
+TEST_F(ManagerTest, TypeIsSetCorrectly) {
+    manager.setType("Manager");
+
+    EXPECT_EQ(manager.getType(), "Manager");
+}
