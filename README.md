@@ -62,6 +62,18 @@ Ports Dragonfly library and example games to use C++20, CMake, Clang, and Google
 
 ## Development Workflows
 
+Use the root targets to build all subprojects or follow the individual build sections below
+
+```
+cmake -S . -B build -DDRAGONFLY_BUILD_TESTS=ON
+cmake --build build --target all <- builds and tests all projects
+cmake --build build --target build-dragonfly  <- builds dragonfly
+cmake --build build --target build-saucer-shoot  <- builds Saucer Shoot
+cmake --build build --target all-dragonfly  <- builds and tests dragonfly
+
+# see root CMakeList for all convenience targets
+```
+
 ### Dragonfly Game Engine Library
 
 #### 1) Build
