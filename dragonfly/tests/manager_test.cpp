@@ -2,8 +2,28 @@
 
 #include <gtest/gtest.h>
 
-namespace {
+class TestManager : public df::Manager {
+    public:
+    using df::Manager::setType;
+};
 
-TEST(ManagerTest, TestsWork) { EXPECT_FLOAT_EQ(0.0f, 0.0f); }
+class ManagerTest : public ::testing::Test {
+    protected:
+    TestManager manager;
+};
 
-}  // namespace
+TEST_F(ManagerTest, StartUpAndShutDown) {
+    EXPECT_FALSE(manager.isStarted());
+
+    manager.startUp();
+    EXPECT_TRUE(manager.isStarted());
+
+    manager.shutDown();
+    EXPECT_FALSE(manager.isStarted());
+}
+
+TEST_F(ManagerTest, TypeIsSetCorrectly) {
+    manager.setType("Manager");
+
+    EXPECT_EQ(manager.getType(), "Manager");
+}

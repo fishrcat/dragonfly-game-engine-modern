@@ -3,25 +3,25 @@
 #include <string>
 
 namespace df {
+
 class Manager {
     private:
     std::string m_type;
-    bool m_is_started;
-
-    protected:
-    void setType(std::string type);
+    bool m_is_started{false};
 
     public:
-    Manager();
-    virtual ~Manager();
+    Manager() = default;
+    virtual ~Manager() = default;
 
-    std::string getType() const;
+    auto getType() const -> std::string;
 
-    virtual int startUp();
-
+    virtual auto startUp() -> int;
     virtual void shutDown();
 
-    bool isStarted() const;
+    auto isStarted() const -> bool;
+
+    protected:
+    void setType(const std::string& type) { m_type = type; }
 };
 
 }  // namespace df

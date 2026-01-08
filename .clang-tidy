@@ -4,6 +4,7 @@ Checks: >
   clang-analyzer-*,
   bugprone-*,
   modernize-*,
+  -modernize-use-nodiscard,
   performance-*,
   readability-*,
   misc-include-cleaner,
@@ -15,7 +16,9 @@ HeaderFilterRegex: '.*'
 
 CheckOptions:
   - key: modernize-use-auto
-    value: 'false'
+    value: 'true'
+  - key: modernize-use-trailing-return-type
+    value: 'true'
 
   - key: readability-function-size.LineThreshold
     value: '200'
