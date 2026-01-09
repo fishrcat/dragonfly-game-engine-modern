@@ -10,12 +10,12 @@ auto main(int argc, char *argv[]) -> int {
 
     // Startup
     df::Manager manager;
-    if (manager.startUp()) {
+    if (manager.startUp() != 0) {
         manager.shutDown();
         return LM.writeLog(df::LogLevel::DEBUG, "Error starting manager");
     }
 
-    LM.writeLog(df::LogLevel::DEBUG, "Started %d instance of test game", 1);
+    LM.writeLog(df::LogLevel::DEBUG, "Started instance of test game");
 
     manager.shutDown();
 

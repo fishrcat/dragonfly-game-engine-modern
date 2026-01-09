@@ -3,12 +3,15 @@ add_library(dragonfly::dragonfly ALIAS dragonfly)
 
 target_sources(dragonfly
     PRIVATE
+    src/clock.cpp
     src/log_manager.cpp
     src/manager.cpp
     PUBLIC
     FILE_SET HEADERS
     BASE_DIRS include
     FILES
+    include/config.h
+    include/clock.h
     include/log_manager.h
     include/manager.h
 )
