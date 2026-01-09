@@ -7,13 +7,6 @@
 namespace df {
 
 class Manager {
-    private:
-    std::string m_type{"Manager"};
-    bool m_is_started{false};
-
-    protected:
-    void setType(const std::string& type) { m_type = type; }
-
     public:
     Manager() = default;
     virtual ~Manager() = default;
@@ -24,5 +17,12 @@ class Manager {
     virtual void shutDown();
 
     auto isStarted() const -> bool;
+
+    protected:
+    void setType(const std::string& type) { m_type = type; }
+
+    private:
+    std::string m_type{"Manager"};
+    bool m_is_started{false};
 };
 }  // namespace df

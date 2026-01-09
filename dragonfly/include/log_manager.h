@@ -3,14 +3,15 @@
 #pragma once
 
 // Project
+#include "clock.h"
+#include "config.h"
 #include "manager.h"
 
 // System
-#include <cstdarg>
-#include <cstdint>
 #include <cstdio>
-#include <ctime>
 #include <string>
+
+#define LM df::LogManager::getInstance()
 
 namespace df {
 
@@ -18,7 +19,7 @@ namespace df {
 enum class LogLevel : std::uint8_t { TRACE, DEBUG, INFO, WARN, ERROR, FATAL };
 
 // LogLevel to a string for readable log printing
-inline auto levelToString(LogLevel level) -> const char* {
+inline auto levelToString(const LogLevel level) -> const char* {
     switch (level) {
         case LogLevel::TRACE:
             return "TRACE";
@@ -39,27 +40,40 @@ inline auto levelToString(LogLevel level) -> const char* {
 
 const std::string LOGFILE_NAME = "dragonfly.log";
 
-class LogManager : public df::Manager {
-    private:
-    LogManager();
-    LogManager(const LogManager&) = delete;             // Disable copy
-    LogManager& operator=(const LogManager&) = delete;  // Disable assignment
-
-    int log_level{static_cast<int>(LogLevel::INFO)};
-    bool m_did_flush{true};
-    FILE* m_log_file{nullptr};
-
+class LogManager : public Manager {
     public:
     ~LogManager() override;
+    LogManager(const LogManager&) = delete;  // Disable copy
+    auto operator=(const LogManager&) -> LogManager& =
+                                             delete;  // Disable assignment
 
     static auto getInstance() -> LogManager&;  // Singleton
+
+    void setClock(const Clock& clock) { m_clock = &clock; }
 
     auto startUp() -> int override;
     void shutDown() override;
 
+    void setLogLevel(LogLevel level);
+    auto getLogLevel() const -> LogLevel;
+
     void setFlush(bool do_flush = true);
 
-    auto writeLog(LogLevel level, const char* fmt, ...) -> int;
+    auto writeLog(LogLevel level, const std::string& msg) const -> int;
+
+    private:
+    LogManager();
+
+#ifdef DEBUG_MODE
+    LogLevel log_level{LogLevel::DEBUG};
+#else
+    LogLevel log_level{LogLevel::ERROR};
+#endif
+
+    bool m_did_flush{true};
+    FILE* m_log_file{nullptr};
+
+    const Clock* m_clock = nullptr;
 };
 
 }  // namespace df

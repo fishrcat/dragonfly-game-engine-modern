@@ -2,17 +2,18 @@
 
 #include <gtest/gtest.h>
 
-#include <cstdio>
+#include <format>  // C++20 for std::format
 #include <fstream>
 #include <sstream>
 #include <string>
 
+#include "clock.h"
 #include "manager.h"
 
 class TestLogManager : public df::LogManager {
     public:
-    using df::LogManager::setFlush;
-    using df::LogManager::writeLog;
+    using LogManager::setFlush;
+    using LogManager::writeLog;
 };
 
 class LogManagerFileTest : public ::testing::Test {
@@ -23,14 +24,16 @@ class LogManagerFileTest : public ::testing::Test {
 
     void SetUp() override {
         log.startUp();
+        const df::Clock gameClock;
+        log.setClock(gameClock);
         log.setFlush(true);
-        std::ofstream ofs(logFileName, std::ios::trunc);
+        std::ofstream ofs(logFileName, std::ios::trunc);  // clear file
     }
 
     void TearDown() override { log.shutDown(); }
 
-    // Helper
-    std::string readLogFile() {
+    // Helper to read the log file contents
+    auto readLogFile() const -> std::string {
         std::ifstream ifs(logFileName);
         std::stringstream sstream;
         sstream << ifs.rdbuf();
@@ -39,10 +42,12 @@ class LogManagerFileTest : public ::testing::Test {
 };
 
 TEST_F(LogManagerFileTest, LogFileContainsMessages) {
-    log.writeLog(df::LogLevel::INFO, "Game started with %d players", 4);
-    log.writeLog(df::LogLevel::WARN, "Memory usage is high: %.1f MB", 512.5);
-    log.writeLog(df::LogLevel::ERROR, "Failed to load resource: %s",
-                 "texture.png");
+    log.writeLog(df::LogLevel::INFO,
+                 std::format("Game started with {} players", 4));
+    log.writeLog(df::LogLevel::WARN,
+                 std::format("Memory usage is high: {:.1f} MB", 512.5));
+    log.writeLog(df::LogLevel::ERROR,
+                 std::format("Failed to load resource: {}", "texture.png"));
 
     std::string contents = readLogFile();
 
@@ -60,10 +65,10 @@ TEST_F(LogManagerFileTest, LogFileContainsMessages) {
 
 TEST_F(LogManagerFileTest, FlushToggleDoesNotLoseMessages) {
     log.setFlush(false);
-    log.writeLog(df::LogLevel::INFO, "Flush off message");
+    log.writeLog(df::LogLevel::INFO, std::string("Flush off message"));
 
     log.setFlush(true);
-    log.writeLog(df::LogLevel::INFO, "Flush on message");
+    log.writeLog(df::LogLevel::INFO, std::string("Flush on message"));
 
     std::string contents = readLogFile();
     EXPECT_NE(contents.find("Flush off message"), std::string::npos);

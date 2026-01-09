@@ -3,11 +3,15 @@
 // Project
 #include "log_manager.h"
 
+#include "clock.h"
+
 // System
 #include <chrono>
 #include <cstdarg>
 #include <cstdio>
 #include <ctime>
+#include <format>
+#include <string>
 
 namespace df {
 
@@ -47,54 +51,44 @@ void LogManager::shutDown() {
     Manager::shutDown();
 }
 
+void LogManager::setLogLevel(const LogLevel level) {
+    if (level == log_level) return;
+
+    writeLog(LogLevel::INFO,
+             std::format("Log level changed from {} to {}",
+                         levelToString(log_level), levelToString(level)));
+
+    log_level = level;
+}
+
+auto LogManager::getLogLevel() const -> LogLevel { return log_level; }
+
 // Debug Mode: flush to file on every write in case of crash
-void LogManager::setFlush(bool do_flush) { m_did_flush = do_flush; }
+void LogManager::setFlush(const bool do_flush) { m_did_flush = do_flush; }
 
-auto LogManager::writeLog(LogLevel level, const char* fmt, ...) -> int {
-    if (level < static_cast<LogLevel>(log_level) || m_log_file == nullptr)
-        return 0;
+auto LogManager::writeLog(const LogLevel level,
+                          const std::string& msg) const -> int {
+    if (level < log_level || m_log_file == nullptr) return 0;
 
-    // Timestamp
-    constexpr int kTimeBufferSize = 48;
-    constexpr int kMillisecondsInSecond = 1000;
+    const std::string time_str =
+        (m_clock != nullptr) ? df::Clock::getSystemTimeString() : "NoClock";
+    const int frame = (m_clock != nullptr) ? m_clock->getFrame() : -1;
 
-    auto now = std::chrono::system_clock::now();
-    auto now_ms = std::chrono::time_point_cast<std::chrono::milliseconds>(now);
-    auto t = std::chrono::system_clock::to_time_t(now);
-    auto ms = now_ms.time_since_epoch().count() % kMillisecondsInSecond;
+    // Format final log string
+    const auto formatted = std::format("[{}][Frame {}] {} : {}", time_str,
+                                       frame, levelToString(level), msg);
 
-    std::tm local_tm{};
-    localtime_r(&t, &local_tm);
-
-    char time_buf[kTimeBufferSize];
-    std::snprintf(time_buf, sizeof(time_buf),
-                  "%04d-%02d-%02d %02d:%02d:%02d.%03d", local_tm.tm_year + 1900,
-                  local_tm.tm_mon + 1, local_tm.tm_mday, local_tm.tm_hour,
-                  local_tm.tm_min, local_tm.tm_sec, static_cast<int>(ms));
-
-    // Format varargs
-    va_list args;
-    va_start(args, fmt);
-
-    // Print to stderr DEBUG or lower
     if (level == LogLevel::TRACE || level == LogLevel::DEBUG) {
-        fprintf(stderr, "%s : %s : ", time_buf, levelToString(level));
-        vfprintf(stderr, fmt, args);
-        fprintf(stderr, "\n");
+        std::fprintf(stderr, "%s\n", formatted.c_str());
     }
 
-    // Print to log file
-    fprintf(m_log_file, "%s : %s : ", time_buf, levelToString(level));
-    vfprintf(m_log_file, fmt, args);
-    fprintf(m_log_file, "\n");
+    std::fprintf(m_log_file, "%s\n", formatted.c_str());
 
-    va_end(args);
-
-    // Flush if enabled
     if (m_did_flush) {
-        if (level == LogLevel::TRACE || level == LogLevel::DEBUG)
-            fflush(stderr);
-        fflush(m_log_file);
+        std::fflush(m_log_file);
+        if (level == LogLevel::TRACE || level == LogLevel::DEBUG) {
+            std::fflush(stderr);
+        }
     }
 
     return 1;

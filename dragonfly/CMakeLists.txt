@@ -3,12 +3,15 @@ add_library(dragonfly::dragonfly ALIAS dragonfly)
 
 target_sources(dragonfly
     PRIVATE
+    src/clock.cpp
     src/log_manager.cpp
     src/manager.cpp
     PUBLIC
     FILE_SET HEADERS
     BASE_DIRS include
     FILES
+    include/config.h
+    include/clock.h
     include/log_manager.h
     include/manager.h
 )
@@ -32,3 +35,16 @@ if (DRAGONFLY_BUILD_TESTS)
   enable_testing()
   add_subdirectory(tests)
 endif()
+
+# Build the test game executable
+add_executable(dragonfly_test_game
+    test_game.cpp
+)
+
+target_link_libraries(dragonfly_test_game
+    PRIVATE dragonfly::dragonfly
+)
+
+target_compile_features(dragonfly_test_game
+    PRIVATE cxx_std_20
+)
