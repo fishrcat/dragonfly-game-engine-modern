@@ -6,6 +6,7 @@ Checks: >
   modernize-*,
   -modernize-use-nodiscard,
   -modernize-avoid-c-arrays,
+  -modernize-avoid-pragma-once,
   performance-*,
   readability-*,
   -readability-magic-numbers,

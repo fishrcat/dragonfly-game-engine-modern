@@ -7,6 +7,10 @@
 #include <config.h>
 
 #include <chrono>
+#include <ctime>
+#include <iomanip>
+#include <sstream>
+#include <string>
 
 namespace df {
 
@@ -17,14 +21,14 @@ auto Clock::getSystemTimeString() -> std::string {
     using namespace std::chrono;
 
     const auto now = system_clock::now();
-    const auto ttime = system_clock::to_time_t(now);
-    std::tm tm{};
-    localtime_r(&ttime, &tm);
-    const auto ms = duration_cast<milliseconds>(now.time_since_epoch()) % 1000;
+    const auto msec =
+        duration_cast<milliseconds>(now.time_since_epoch()) % 1000;
+    const auto time_t_now = system_clock::to_time_t(now);
+    const std::tm local_tm = *std::localtime(&time_t_now);
 
     std::ostringstream oss;
-    oss << std::put_time(&tm, "%Y-%m-%d %H:%M:%S") << '.' << std::setw(3)
-        << std::setfill('0') << ms.count();
+    oss << std::put_time(&local_tm, "%Y-%m-%d %H:%M:%S") << '.' << std::setw(3)
+        << std::setfill('0') << msec.count();
 
     return oss.str();
 }
