@@ -7,6 +7,7 @@ target_sources(dragonfly
     src/game_manager.cpp
     src/log_manager.cpp
     src/manager.cpp
+    src/vector.cpp
     PUBLIC
     FILE_SET HEADERS
     BASE_DIRS include
@@ -16,6 +17,7 @@ target_sources(dragonfly
     include/game_manager.h
     include/log_manager.h
     include/manager.h
+    include/vector.h
 )
 
 target_compile_features(dragonfly PUBLIC cxx_std_20)
