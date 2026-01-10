@@ -39,7 +39,7 @@ void GameManager::run() {
 
     Clock dev_clock;  // DEV WRAPPER - TODO: Rem when there is a way to shut
                       // down the game loop
-    const auto dev_runtime = Clock::duration_t(2000);
+    const auto dev_runtime = Clock::duration_t(60);
 
     while (!m_game_over) {
         // Start the frame

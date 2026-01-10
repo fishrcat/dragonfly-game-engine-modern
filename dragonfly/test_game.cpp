@@ -15,8 +15,6 @@ auto main(int argc, char *argv[]) -> int {
     LM.writeLog(df::LogLevel::DEBUG, "Started instance of test game");
 
     GM.run();
-    std::this_thread::sleep_for(std::chrono::seconds(5));
-    GM.setGameOver();
 
     GM.shutDown();
 
