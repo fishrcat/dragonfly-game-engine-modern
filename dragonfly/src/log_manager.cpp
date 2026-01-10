@@ -1,4 +1,4 @@
-// log_manager.cpp — Logging to file
+// log_manager.cpp — Manager of logging to file
 
 // Project
 #include "log_manager.h"
@@ -64,7 +64,7 @@ void LogManager::setLogLevel(const LogLevel level) {
 auto LogManager::getLogLevel() const -> LogLevel { return log_level; }
 
 // Debug Mode: flush to file on every write in case of crash
-void LogManager::setFlush(const bool do_flush) { m_did_flush = do_flush; }
+void LogManager::setFlush(const bool do_flush) { m_do_flush = do_flush; }
 
 auto LogManager::writeLog(const LogLevel level,
                           const std::string& msg) const -> int {
@@ -78,15 +78,15 @@ auto LogManager::writeLog(const LogLevel level,
     const auto formatted = std::format("[{}][Frame {}] {} : {}", time_str,
                                        frame, levelToString(level), msg);
 
-    if (level == LogLevel::TRACE || level == LogLevel::DEBUG) {
+    if (log_level == LogLevel::TRACE || log_level == LogLevel::DEBUG) {
         std::fprintf(stderr, "%s\n", formatted.c_str());
     }
 
     std::fprintf(m_log_file, "%s\n", formatted.c_str());
 
-    if (m_did_flush) {
+    if (m_do_flush) {
         std::fflush(m_log_file);
-        if (level == LogLevel::TRACE || level == LogLevel::DEBUG) {
+        if (log_level == LogLevel::TRACE || log_level == LogLevel::DEBUG) {
             std::fflush(stderr);
         }
     }
