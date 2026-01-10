@@ -20,6 +20,7 @@ auto GameManager::getInstance() -> GameManager& {
 auto GameManager::startUp() -> int {
     LM.startUp();
     LM.setClock(m_game_clock);
+    LM.writeLog(LogLevel::INFO, "GameManager: starting up");
 
     m_game_clock.bumpFrame();
 
@@ -27,39 +28,42 @@ auto GameManager::startUp() -> int {
 }
 
 void GameManager::shutDown() {
+    LM.writeLog(LogLevel::INFO, "GameManager: shutting down");
     LM.shutDown();
-    setGameOver();
+
+    Manager::shutDown();
 }
 
 void GameManager::run() {
-    LM.writeLog(df::LogLevel::DEBUG, "GameManager: run()");
+    LM.writeLog(LogLevel::DEBUG, "GameManager: run()");
+
+    Clock dev_clock;  // DEV WRAPPER - TODO: Rem when there is a way to shut
+                      // down the game loop
+    const auto dev_runtime = Clock::duration_t(2000);
+
     while (!m_game_over) {
         // Start the frame
         m_game_clock.bumpFrame();  // Increments frame ref num and sets frame
                                    // start time
-        LM.writeLog(df::LogLevel::DEBUG,
-                    std::format("GameManager: start frame {}",
-                                m_game_clock.getFrame()));
-
-        // Debug time check
-        LM.writeLog(df::LogLevel::DEBUG,
-                    std::format("GameManager: start frame time check {}",
-                                m_game_clock.split()));
 
         // Game loop here
         std::this_thread::sleep_for(std::chrono::milliseconds(15));
 
         // Sleep the remainder of the frame time
         const Clock::duration_t remainder = m_game_clock.getFrameRemainder();
-        LM.writeLog(df::LogLevel::DEBUG,
+        LM.writeLog(LogLevel::DEBUG,
                     std::format("GameManager: frame sleep {}", remainder));
         std::this_thread::sleep_for(remainder);
 
         // Debug time check
         LM.writeLog(
-            df::LogLevel::DEBUG,
-            std::format("GameManager: end frame time check {}",
+            LogLevel::DEBUG,
+            std::format("GameManager: Total frame time check {}",
                         m_game_clock.delta()));  // Resets m_previous_time
+
+        if (dev_clock.split() >= dev_runtime) {
+            GM.setGameOver();
+        }
     }
 }
 

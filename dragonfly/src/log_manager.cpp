@@ -78,7 +78,7 @@ auto LogManager::writeLog(const LogLevel level,
     const auto formatted = std::format("[{}][Frame {}] {} : {}", time_str,
                                        frame, levelToString(level), msg);
 
-    if (level == LogLevel::TRACE || level == LogLevel::DEBUG) {
+    if (log_level == LogLevel::TRACE || log_level == LogLevel::DEBUG) {
         std::fprintf(stderr, "%s\n", formatted.c_str());
     }
 
@@ -86,7 +86,7 @@ auto LogManager::writeLog(const LogLevel level,
 
     if (m_do_flush) {
         std::fflush(m_log_file);
-        if (level == LogLevel::TRACE || level == LogLevel::DEBUG) {
+        if (log_level == LogLevel::TRACE || log_level == LogLevel::DEBUG) {
             std::fflush(stderr);
         }
     }

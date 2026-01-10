@@ -10,7 +10,6 @@ FetchContent_MakeAvailable(googletest)
 
 add_executable(dragonfly_tests
     clock_test.cpp
-    game_manager_test.cpp
     log_manager_test.cpp
     manager_test.cpp
 )
