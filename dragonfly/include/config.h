@@ -1,5 +1,5 @@
 // config.h — Engine level config
-// TODO: Research settings alternatives
+// TODO: Research post-compile settings manager best practices
 
 #pragma once
 

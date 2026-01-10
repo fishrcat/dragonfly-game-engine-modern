@@ -69,6 +69,7 @@ auto Clock::getFrame() const -> int { return m_frame; }
 
 auto Clock::bumpFrame() -> int {
     m_frame++;
+    setFrameStart();
     return m_frame;
 }
 

@@ -4,6 +4,7 @@ add_library(dragonfly::dragonfly ALIAS dragonfly)
 target_sources(dragonfly
     PRIVATE
     src/clock.cpp
+    src/game_manager.cpp
     src/log_manager.cpp
     src/manager.cpp
     PUBLIC
@@ -12,6 +13,7 @@ target_sources(dragonfly
     FILES
     include/config.h
     include/clock.h
+    include/game_manager.h
     include/log_manager.h
     include/manager.h
 )

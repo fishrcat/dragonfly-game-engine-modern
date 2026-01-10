@@ -1,4 +1,4 @@
-// log_manager.h — Logging to file
+// log_manager.h — Manager of l ogging to file
 
 #pragma once
 
@@ -49,6 +49,7 @@ class LogManager : public Manager {
 
     static auto getInstance() -> LogManager&;  // Singleton
 
+    // Read only game clock in LogManager context
     void setClock(const Clock& clock) { m_clock = &clock; }
 
     auto startUp() -> int override;
@@ -64,13 +65,15 @@ class LogManager : public Manager {
     private:
     LogManager();
 
+    // TODO: change config.h to a post-compile settings manager
 #ifdef DEBUG_MODE
     LogLevel log_level{LogLevel::DEBUG};
+    bool m_do_flush{true};
 #else
     LogLevel log_level{LogLevel::ERROR};
+    bool m_do_flush{false};
 #endif
 
-    bool m_did_flush{true};
     FILE* m_log_file{nullptr};
 
     const Clock* m_clock = nullptr;

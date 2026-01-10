@@ -11,6 +11,7 @@ class Clock {
     public:
     using duration_t = std::chrono::milliseconds;
     using point_t = std::chrono::steady_clock::time_point;
+    using clock_t = std::chrono::steady_clock;
 
     Clock();
 
@@ -30,7 +31,6 @@ class Clock {
     auto bumpFrame() -> int;
 
     private:
-    using clock_t = std::chrono::steady_clock;
     clock_t::time_point m_previous_time;
     clock_t::time_point m_frame_start;
     int m_frame{0};

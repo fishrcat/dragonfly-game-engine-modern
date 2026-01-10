@@ -17,6 +17,7 @@ Ports Dragonfly library and example games to use C++20, CMake, Clang, and Google
         - [Run Tests](#2-run-tests)
         - [Format & Lint](#3-format--lint)
     - [Saucer Shoot Game](#saucer-shoot-game)
+- [Dragonfly Engine Class Structure](#dragonfly-engine-class-structure)
 
 ## Structure
 
@@ -37,9 +38,9 @@ Ports Dragonfly library and example games to use C++20, CMake, Clang, and Google
     - [x] Migrate to CMake
     - [x] Integrate Clang and GoogleTest
     - [x] Initialize GitHub actions to lint/build/test PR commits
-- [ ] **Dragopfly** - Recreate dragonfly library following the [Program a Game Engine from Scratch Book](https://dragonfly.wpi.edu/book/index.html) development checkpoints
-    - [ ] DC1: Manager & LogManager
-    - [ ] DC2: Clock & GameManager
+- [ ] **Dragonfly** - Recreate dragonfly library following the [Program a Game Engine from Scratch Book](https://dragonfly.wpi.edu/book/index.html) development checkpoints
+    - [x] DC1: Manager & LogManager
+    - [x] DC2: Clock & GameManager
     - [ ] DC3: Vector & Object
     - [ ] DC4: Dragonfly Egg
     - [ ] DC5: Display Manager
@@ -98,3 +99,50 @@ pre-commit run --all-files
 ```
 
 ### Saucer Shoot Game
+
+## Dragonfly Engine Class Structure
+
+### Utility
+
+| Class     | Description                           |
+|-----------|---------------------------------------|
+| Box       | 2D rectangle                          |
+| Vector    | 2D vector                             |
+| Clock     | Timing support                        |
+| Music     | Store and play music                  |
+| Sound     | Store and play sound effects          |
+| Frame     | 2D character image                    |
+| Sprite    | Sequence of frames for animated image |
+| Animation | Control for animating Sprite          |
+
+### Event
+
+| Class           | Description                                    |
+|-----------------|------------------------------------------------|
+| Event           | Base class for engine events                   |
+| EventCollision  | Event generated when solid objects collide     |
+| EventKeyboard   | Event generated when keyboard has input        |
+| EventMouse      | Event generated when mouse has input           |
+| EventOut        | Event generated when object goes outside world |
+| EventStep       | Event generated each game loop                 |
+| EventView       | Event generated when updating ViewObjects      |
+
+### Manager
+
+| Class            | Description                                   |
+|------------------|-----------------------------------------------|
+| Manager          | Base class for engine managers                |
+| DisplayManager   | Manager of the graphics display               |
+| GameManager      | Manager of the game loop                      |
+| InputManager     | Manager of player input (keyboard and mouse) |
+| LogManager       | Manager of the logfile                        |
+| ResourceManager  | Manager of resources (sprites, sounds, music)|
+| WorldManager     | Manager of the game world                     |
+
+### Object
+
+| Class       | Description                                    |
+|-------------|------------------------------------------------|
+| Object      | Base class for game engine objects             |
+| ViewObject  | View objects displayed on the Heads Up Display |
+| ObjectList  | List container for Objects                     |
