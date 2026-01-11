@@ -22,10 +22,7 @@ add_custom_target(test-dragonfly
     COMMAND ${CMAKE_CTEST_COMMAND} --test-dir ${CMAKE_BINARY_DIR}/dragonfly --output-on-failure
     COMMENT "Building Dragonfly library and running all tests..."
 )
-add_dependencies(test-dragonfly
-    dragonfly
-    dragonfly_test_game
-)
+add_dependencies(test-dragonfly dragonfly dragonfly_tests)
 
 add_custom_target(profile-dragonfly
     perf record -e cpu-clock -F 10000 -g -- $<TARGET_FILE:dragonfly_test_game_profile>
