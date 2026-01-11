@@ -7,7 +7,7 @@
 
 auto main(int argc, char *argv[]) -> int {
     // Startup
-    if (GM.startUp() != 0) {
+    if (GM.startUp() != df::StartupResult::Ok) {
         GM.shutDown();
         return LM.writeLog(df::LogLevel::DEBUG, "Error starting manager");
     }

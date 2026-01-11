@@ -46,7 +46,7 @@ Ports Dragonfly library and example games to use C++20, CMake, Clang, GoogleTest
 - [ ] **Dragonfly** - Recreate dragonfly library following the [Program a Game Engine from Scratch Book](https://dragonfly.wpi.edu/book/index.html) development checkpoints
     - [x] DC1: Manager & LogManager
     - [x] DC2: Clock & GameManager
-    - [ ] DC3: Vector & Object
+    - [x] DC3: Vector & Object
     - [ ] DC4: Dragonfly Egg
     - [ ] DC5: Display Manager
     - [ ] DC6: Input Manager

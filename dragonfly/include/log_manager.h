@@ -52,8 +52,9 @@ class LogManager : public Manager {
     // Read only game clock in LogManager context
     void setClock(const Clock& clock) { m_clock = &clock; }
 
-    auto startUp() -> int override;
-    void shutDown() override;
+    [[nodiscard]] auto startUp()
+        -> StartupResult override;  // Enforce startup checks
+    void shutDown() noexcept override;
 
     void setLogLevel(LogLevel level);
     auto getLogLevel() const -> LogLevel;

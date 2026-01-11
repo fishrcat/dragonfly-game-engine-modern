@@ -1,4 +1,4 @@
-// object.cpp — Base class for game engine objects
+// object.h — Base class for game engine objects
 
 #pragma once
 
@@ -16,10 +16,10 @@ class Object {
     virtual ~Object() = default;
 
     void setId(int new_id) noexcept;
-    [[nodiscard]] auto getId() const noexcept -> int;
+    auto getId() const noexcept -> int;
 
     void setType(std::string_view new_type);
-    [[nodiscard]] auto getType() const noexcept -> const std::string&;
+    auto getType() const -> const std::string&;
 
     void setPosition(const Vector& new_pos);
     [[nodiscard]] auto getPosition() const noexcept -> const Vector&;

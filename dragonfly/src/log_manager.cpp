@@ -30,12 +30,12 @@ auto LogManager::getInstance() -> LogManager& {
 }
 
 // Open file on startup
-auto LogManager::startUp() -> int {
+auto LogManager::startUp() -> StartupResult {
     m_log_file = fopen(LOGFILE_NAME.c_str(), "w+");
 
     if (m_log_file == nullptr) {
         writeLog(LogLevel::ERROR, "Error opening log file");
-        return -1;
+        return StartupResult::Failed;
     }
 
     writeLog(LogLevel::INFO, "LogManager started");
@@ -43,7 +43,7 @@ auto LogManager::startUp() -> int {
 }
 
 // Close file on shutdown
-void LogManager::shutDown() {
+void LogManager::shutDown() noexcept {
     if (m_log_file != nullptr) {
         fclose(m_log_file);
         m_log_file = nullptr;

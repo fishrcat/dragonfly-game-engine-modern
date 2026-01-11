@@ -1,4 +1,4 @@
-// game_manager.cpp — Manager of the game loop
+// game_manager.h — Manager of the game loop
 
 #pragma once
 
@@ -25,8 +25,9 @@ class GameManager : public Manager {
                                               delete;  // Disable assignment
     static auto getInstance() -> GameManager&;         // Singleton
 
-    auto startUp() -> int override;
-    void shutDown() override;
+    [[nodiscard]] auto startUp()
+        -> StartupResult override;  // Enforce startup checks
+    void shutDown() noexcept override;
 
     void run();
 
