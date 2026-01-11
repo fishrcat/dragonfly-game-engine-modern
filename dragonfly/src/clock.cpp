@@ -1,4 +1,4 @@
-// clock.h — System time interface with frame-specific references
+// clock.cpp — System time interface with frame-specific references
 
 // Project
 #include "clock.h"

@@ -1,3 +1,5 @@
+// clock_test.cpp — Unit tests for df::Clock
+
 #include "clock.h"
 
 #include <gtest/gtest.h>

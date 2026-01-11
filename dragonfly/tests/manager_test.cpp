@@ -1,10 +1,12 @@
+// manager_test.cpp — Unit tests for df::Manager
+
 #include "manager.h"
 
 #include <gtest/gtest.h>
 
 class TestManager : public df::Manager {
     public:
-    using df::Manager::setType;
+    using Manager::setType;
 };
 
 class ManagerTest : public ::testing::Test {

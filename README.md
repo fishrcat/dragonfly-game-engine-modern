@@ -88,6 +88,12 @@ cmake -S . -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_BUILD_TYPE=RelWit
 cmake --build build --target build-dragonfly
 ```
 
+Run the test game executable with
+
+```bash
+./build/dragonfly/dragonfly_test_game
+```
+
 ### 2) Run tests
 
 ```bash

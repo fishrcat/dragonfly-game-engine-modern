@@ -12,20 +12,21 @@ namespace df {
 
 class Object {
     public:
-    Object() = default;
+    Object();
     virtual ~Object() = default;
 
-    void setId(int new_id) noexcept;
+    void setId(int new_id);
     auto getId() const noexcept -> int;
 
     void setType(std::string_view new_type);
-    auto getType() const -> const std::string&;
+    auto getType() const noexcept -> const std::string&;
 
     void setPosition(const Vector& new_pos);
-    [[nodiscard]] auto getPosition() const noexcept -> const Vector&;
+    [[nodiscard]] auto getPosition() const noexcept
+        -> const Vector&;  // Using nodiscard for heavy gets only
 
     private:
-    int m_id{};
+    int m_id{-1};
     std::string m_type;
     Vector m_position;
 };
