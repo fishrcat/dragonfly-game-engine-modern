@@ -13,6 +13,7 @@ add_executable(dragonfly_tests
     log_manager_test.cpp
     manager_test.cpp
     object_test.cpp
+    object_list_test.cpp
     vector_test.cpp
 )
 
