@@ -17,8 +17,10 @@ auto GameManager::getInstance() -> GameManager& {
     return instance;
 }
 
-auto GameManager::startUp() -> int {
-    LM.startUp();
+auto GameManager::startUp() -> StartupResult {
+    if (LM.startUp() != StartupResult::Ok) {
+        return StartupResult::Failed;
+    }
     LM.setClock(m_game_clock);
     LM.writeLog(LogLevel::INFO, "GameManager: starting up");
 
@@ -27,7 +29,7 @@ auto GameManager::startUp() -> int {
     return Manager::startUp();
 }
 
-void GameManager::shutDown() {
+void GameManager::shutDown() noexcept {
     LM.writeLog(LogLevel::INFO, "GameManager: shutting down");
     LM.shutDown();
 

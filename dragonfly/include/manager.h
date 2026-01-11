@@ -2,19 +2,27 @@
 
 #pragma once
 
+// System
+#include <cstdint>
 #include <string>
 
 namespace df {
+
+enum class StartupResult : std::uint8_t {
+    Ok,
+    Failed,
+};
 
 class Manager {
     public:
     Manager() = default;
     virtual ~Manager() = default;
 
-    auto getType() const -> std::string;
+    auto getType() const noexcept -> std::string;
 
-    virtual auto startUp() -> int;
-    virtual void shutDown();
+    [[nodiscard]] virtual auto startUp()
+        -> StartupResult;  // Enforce startup checks
+    virtual void shutDown() noexcept;
 
     auto isStarted() const -> bool;
 

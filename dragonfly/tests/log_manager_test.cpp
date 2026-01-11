@@ -1,3 +1,5 @@
+// log_manager_test.cpp — Unit tests for df::LogManager
+
 #include "log_manager.h"
 
 #include <gtest/gtest.h>

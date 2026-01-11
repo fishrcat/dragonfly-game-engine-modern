@@ -7,6 +7,8 @@ target_sources(dragonfly
     src/game_manager.cpp
     src/log_manager.cpp
     src/manager.cpp
+    src/object.cpp
+    src/object_list.cpp
     src/vector.cpp
     PUBLIC
     FILE_SET HEADERS
@@ -17,6 +19,8 @@ target_sources(dragonfly
     include/game_manager.h
     include/log_manager.h
     include/manager.h
+    include/object.h
+    include/object_list.h
     include/vector.h
 )
 

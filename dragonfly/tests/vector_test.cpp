@@ -1,4 +1,4 @@
-// vector_test.cpp — Unit tests for 2D vector object and math overrides
+// vector_test.cpp — Unit tests for df::Vector
 
 #include "vector.h"
 

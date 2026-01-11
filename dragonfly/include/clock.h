@@ -16,7 +16,7 @@ class Clock {
     Clock();
 
     // Readable time (system_time)
-    static auto getSystemTimeString() -> std::string;
+    [[nodiscard]] static auto getSystemTimeString() -> std::string;
 
     // Clock time (steady_time)
     auto delta() -> duration_t;

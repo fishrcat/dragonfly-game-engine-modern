@@ -1,10 +1,12 @@
+// manager_test.cpp — Unit tests for df::Manager
+
 #include "manager.h"
 
 #include <gtest/gtest.h>
 
 class TestManager : public df::Manager {
     public:
-    using df::Manager::setType;
+    using Manager::setType;
 };
 
 class ManagerTest : public ::testing::Test {
@@ -15,7 +17,8 @@ class ManagerTest : public ::testing::Test {
 TEST_F(ManagerTest, StartUpAndShutDown) {
     EXPECT_FALSE(manager.isStarted());
 
-    manager.startUp();
+    const df::StartupResult result = manager.startUp();
+    EXPECT_EQ(result, df::StartupResult::Ok);
     EXPECT_TRUE(manager.isStarted());
 
     manager.shutDown();
