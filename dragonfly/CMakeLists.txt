@@ -27,11 +27,7 @@ target_include_directories(dragonfly
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
 )
 
-if (CMAKE_CXX_COMPILER_ID MATCHES "Clang|GNU")
-  target_compile_options(dragonfly PRIVATE -Wall -Wextra -Wpedantic)
-elseif (MSVC)
-  target_compile_options(dragonfly PRIVATE /W4 /permissive- /WX)
-endif()
+target_compile_options(dragonfly PRIVATE -Wall -Wextra -Wpedantic)
 
 option(DRAGONFLY_BUILD_TESTS "Build Dragonfly tests" ON)
 
@@ -40,7 +36,7 @@ if (DRAGONFLY_BUILD_TESTS)
   add_subdirectory(tests)
 endif()
 
-# Build the test game executable
+# ----- Test game executable
 add_executable(dragonfly_test_game
     test_game.cpp
 )
@@ -51,4 +47,28 @@ target_link_libraries(dragonfly_test_game
 
 target_compile_features(dragonfly_test_game
     PRIVATE cxx_std_20
+)
+
+# ----- Profileable test game executable
+
+add_executable(dragonfly_test_game_profile
+    test_game.cpp
+)
+
+target_link_libraries(dragonfly_test_game_profile
+    PRIVATE dragonfly::dragonfly
+)
+
+target_compile_features(dragonfly_test_game_profile
+    PRIVATE cxx_std_20
+)
+
+target_compile_options(dragonfly_test_game_profile PRIVATE
+    -O2
+    -g
+    -fno-omit-frame-pointer
+)
+
+target_link_options(dragonfly_test_game_profile PRIVATE
+    -fno-omit-frame-pointer
 )

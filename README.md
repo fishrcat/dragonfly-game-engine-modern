@@ -2,7 +2,7 @@
 
 Modernized version of the Dragonfly C++ Text-Based Game Engine.
 
-Ports Dragonfly library and example games to use C++20, CMake, Clang, and GoogleTest.
+Ports Dragonfly library and example games to use C++20, CMake, Clang, GoogleTest, Perf, etc.
 
 > Mark Claypool. Dragonfly - Program a Game Engine from Scratch, Interactive Media and Game Development, Worcester Polytechnic Institute, 2014. Online at: http://dragonfly.wpi.edu/book/
 
@@ -12,20 +12,25 @@ Ports Dragonfly library and example games to use C++20, CMake, Clang, and Google
 - [Gameplay Examples](#gameplay-examples)
 - [TODOs](#todos)
 - [Development Workflows](#development-workflows)
-    - [Dragonfly Game Engine Library](#dragonfly-game-engine-library)
-        - [Build](#1-build)
-        - [Run Tests](#2-run-tests)
-        - [Format & Lint](#3-format--lint)
-    - [Saucer Shoot Game](#saucer-shoot-game)
+  - [Dragonfly Game Engine Library](#dragonfly-game-engine-library)
+    - [0) Build Root Targets](#0-build-root-targets)
+    - [1) Build Library and test_game Executable](#1-build-library-and-test_game-executable)
+    - [2) Run Tests](#2-run-tests)
+    - [3) Format & Lint](#3-format--lint)
+    - [4) Profile Performance](#4-profile-performance)
+  - [Saucer Shoot Game](#saucer-shoot-game)
+  - [Bongo Bear Game](#bongo-bear-game)
 - [Dragonfly Engine Class Structure](#dragonfly-engine-class-structure)
+
+---
 
 ## Structure
 
-```
-/dragonfly <- dragonfly library
-/saucer_shoot <- intro 2d shooter game utilizing the dragonfly library
-/bongo_bear <- bongo cat but it's a bear using the dragonfly library and ascii shader
-```
+- `/dragonfly` <- dragonfly library
+- `/saucer_shoot` <- intro 2d shooter game utilizing the dragonfly library
+- `/bongo_bear` <- bongo cat but it's a bear using the dragonfly library and ascii shader
+
+---
 
 ## Gameplay Examples
 
@@ -61,44 +66,56 @@ Ports Dragonfly library and example games to use C++20, CMake, Clang, and Google
 - [ ] **Feature Extension** - Write an ASCII shader for the engine
 - [ ] **Bongo Bear** - Create advanced game example using all library features
 
+---
+
 ## Development Workflows
 
-Use the root targets to build all subprojects or follow the individual build sections below
+### --- Dragonfly Game Engine Library ---
 
-```
-cmake -S . -B build -DDRAGONFLY_BUILD_TESTS=ON
-cmake --build build --target all <- builds and tests all projects
-cmake --build build --target build-dragonfly  <- builds dragonfly
-cmake --build build --target build-saucer-shoot  <- builds Saucer Shoot
-cmake --build build --target all-dragonfly  <- builds and tests dragonfly
+See root CMakeList for all convenience targets.  Build and test workflows are also run on commit, see `.github/workflows`.
 
-# see root CMakeList for all convenience targets
-```
-
-### Dragonfly Game Engine Library
-
-#### 1) Build
+### 0) Build root targets
 
 ```bash
 cd dragonfly
 mkdir -p build  # Run once
-cmake -S . -B build -DDRAGONFLY_BUILD_TESTS=ON  # Run once
-cmake --build build
+cmake -S . -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_BUILD_TYPE=RelWithDebInfo
 ```
 
-#### 2) Run Tests
+### 1) Build library and test_game executable
+
 ```bash
-ctest --test-dir build --output-on-failure
+cmake --build build --target build-dragonfly
 ```
 
-#### 3) Format & Lint
+### 2) Run tests
+
+```bash
+cmake --build build --target test-dragonfly
+```
+
+### 3) Format & Lint
 
 ```bash
 pipx install pre-commit  # Run once
 pre-commit run --all-files
 ```
 
-### Saucer Shoot Game
+### 4) Profile performance
+
+```bash
+cmake --build build --target profile-dragonfly
+```
+
+See `build/flamegraph.svg` for an interactive profile like the following example
+
+![flamegraph-example.png](img/flamegraph-example.png)
+
+### --- Saucer Shoot Game ---
+
+### --- Bongo Bear Game ---
+
+---
 
 ## Dragonfly Engine Class Structure
 
