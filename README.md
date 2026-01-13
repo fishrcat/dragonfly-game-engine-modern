@@ -10,7 +10,6 @@ Ports Dragonfly library and example games to use C++20, CMake, Clang, GoogleTest
 
 - [Structure](#structure)
 - [Gameplay Examples](#gameplay-examples)
-- [TODOs](#todos)
 - [Development Workflows](#development-workflows)
   - [Dragonfly Game Engine Library](#dragonfly-game-engine-library)
     - [0) Build Root Targets](#0-build-root-targets)
@@ -20,6 +19,7 @@ Ports Dragonfly library and example games to use C++20, CMake, Clang, GoogleTest
     - [4) Profile Performance](#4-profile-performance)
   - [Saucer Shoot Game](#saucer-shoot-game)
   - [Bongo Bear Game](#bongo-bear-game)
+- [TODOs](#todos)
 - [Dragonfly Engine Class Structure](#dragonfly-engine-class-structure)
 
 ---
@@ -28,43 +28,13 @@ Ports Dragonfly library and example games to use C++20, CMake, Clang, GoogleTest
 
 - `/dragonfly` <- dragonfly library
 - `/saucer_shoot` <- intro 2d shooter game utilizing the dragonfly library
-- `/bongo_bear` <- bongo cat but it's a bear using the dragonfly library and ascii shader
+- `/bongo_bear` <- bongo cat game but it's a bear using the dragonfly library and ascii shader
 
 ---
 
 ## Gameplay Examples
 
 [Saucer Shoot](https://github.com/fishrcat/dragonfly-cpp-engine-course/pull/1)
-
-## TODOs
-
-- [x] [**Saucer Shoot Tutorial**](https://dragonfly.wpi.edu/book/pdfs/3-tutorial.pdf) - Build the example game using the existing dragonfly library
-- [x] **Development Environment v1** - Initialize dragonfly library development workflows
-    - [x] Migrate to CMake
-    - [x] Integrate Clang and GoogleTest
-    - [x] Initialize GitHub actions to lint/build/test PR commits
-- [ ] **Dragonfly** - Recreate dragonfly library following the [Program a Game Engine from Scratch Book](https://dragonfly.wpi.edu/book/index.html) development checkpoints
-    - [x] DC1: Manager & LogManager
-    - [x] DC2: Clock & GameManager
-    - [x] DC3: Vector & Object
-    - [ ] DC4: Dragonfly Egg
-    - [ ] DC5: Display Manager
-    - [ ] DC6: Input Manager
-    - [ ] DC7: Dragonfly Naiad
-    - [ ] DC8: Sprite & Resource Manager
-    - [ ] DC9: Sprite Animation
-    - [ ] DC10: Collisions & Views
-    - [ ] DC11: Sound & Music
-    - [ ] DC12: Event Filtering
-    - [ ] DC13: View Objects
-    - [ ] DC14: Scene Graph
-    - [ ] DC15: Dragonfly
-    - [ ] Rebuild Saucer Shoot game to test final version
-- [ ] **Development Environment V2** - Update the development workflows for build matrix of library and example games
-    - [ ] Enable multi-build of all example games and dragonfly library
-    - [ ] Enable releases to GitHub page from action build files
-- [ ] **Feature Extension** - Write an ASCII shader for the engine
-- [ ] **Bongo Bear** - Create advanced game example using all library features
 
 ---
 
@@ -120,6 +90,38 @@ See `build/flamegraph.svg` for an interactive profile like the following example
 ### --- Saucer Shoot Game ---
 
 ### --- Bongo Bear Game ---
+
+---
+
+## TODOs
+
+- [x] [**Saucer Shoot Tutorial**](https://dragonfly.wpi.edu/book/pdfs/3-tutorial.pdf) - Build the example game using the existing dragonfly library
+- [x] **Development Environment v1** - Initialize dragonfly library development workflows
+  - [x] Migrate to CMake
+  - [x] Integrate Clang and GoogleTest
+  - [x] Initialize GitHub actions to lint/build/test PR commits
+- [ ] **Dragonfly** - Recreate dragonfly library following the [Program a Game Engine from Scratch Book](https://dragonfly.wpi.edu/book/index.html) development checkpoints
+  - [x] DC1: Manager & LogManager
+  - [x] DC2: Clock & GameManager
+  - [x] DC3: Vector & Object
+  - [x] DC4: Dragonfly Egg
+  - [ ] DC5: Display Manager
+  - [ ] DC6: Input Manager
+  - [ ] DC7: Dragonfly Naiad
+  - [ ] DC8: Sprite & Resource Manager
+  - [ ] DC9: Sprite Animation
+  - [ ] DC10: Collisions & Views
+  - [ ] DC11: Sound & Music
+  - [ ] DC12: Event Filtering
+  - [ ] DC13: View Objects
+  - [ ] DC14: Scene Graph
+  - [ ] DC15: Dragonfly
+  - [ ] Rebuild Saucer Shoot game to test final version
+- [ ] **Development Environment V2** - Update the development workflows for build matrix of library and example games
+  - [ ] Enable multi-build of all example games and dragonfly library
+  - [ ] Enable releases to GitHub page from action build files
+- [ ] **Feature Extension** - Write an ASCII shader for the engine
+- [ ] **Bongo Bear** - Create advanced game example using all library features
 
 ---
 
