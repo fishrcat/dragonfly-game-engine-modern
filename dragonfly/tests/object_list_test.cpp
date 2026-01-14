@@ -8,7 +8,7 @@ using namespace df;
 
 class TestObject : public Object {
     public:
-    TestObject(const std::string &type) { setType(type); }
+    explicit TestObject(const std::string &type) { setType(type); }
 };
 
 TEST(ObjectListTest, AppendAndCount) {
@@ -21,7 +21,7 @@ TEST(ObjectListTest, AppendAndCount) {
 TEST(ObjectListTest, Pop) {
     ObjectList list;
     list.append(new TestObject("A"));
-    auto obj = list.pop();
+    const auto obj = list.pop();
     EXPECT_EQ(obj->getType(), "A");
     EXPECT_EQ(list.count(), 0);
 }

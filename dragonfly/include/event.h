@@ -1,13 +1,13 @@
-// evnent.h — Base class for engine events
+// event.h — Base class for engine events
 
 #pragma once
 
 // System
 #include <string>
 
-const std::string UNDEFINED_EVENT = "df::undefined";
-
 namespace df {
+
+const std::string UNDEFINED_EVENT = "df::undefined";
 
 class Event {
     public:

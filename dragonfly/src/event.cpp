@@ -1,4 +1,4 @@
-// evnent.h — Base class for engine events
+// event.h — Base class for engine events
 
 #include "event.h"
 
