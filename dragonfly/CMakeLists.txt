@@ -12,6 +12,7 @@ target_sources(dragonfly
     src/object.cpp
     src/object_list.cpp
     src/vector.cpp
+    src/world_manager.cpp
     PUBLIC
     FILE_SET HEADERS
     BASE_DIRS include
@@ -26,6 +27,7 @@ target_sources(dragonfly
     include/object.h
     include/object_list.h
     include/vector.h
+    include/world_manager.h
 )
 
 target_compile_features(dragonfly PUBLIC cxx_std_20)
