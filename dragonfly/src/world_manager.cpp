@@ -64,6 +64,7 @@ auto WorldManager::getAllObjects() const -> std::vector<Object*> {
 }
 
 // Usage: for (auto* obj : GM.objectsOfType("Enemy")) {obj->update();}
+// TODO: Convert to template
 auto WorldManager::objectsOfType(const std::string_view type) const
     -> std::vector<Object*> {
     // Non-owning filtered view
