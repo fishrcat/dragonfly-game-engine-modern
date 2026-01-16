@@ -8,7 +8,7 @@ using namespace df;
 
 class TestObject : public Object {
     public:
-    TestObject(const std::string &type) { setType(type); }
+    explicit TestObject(const std::string &type) { setType(type); }
 };
 
 TEST(ObjectListTest, AppendAndCount) {
@@ -21,7 +21,7 @@ TEST(ObjectListTest, AppendAndCount) {
 TEST(ObjectListTest, Pop) {
     ObjectList list;
     list.append(new TestObject("A"));
-    auto obj = list.pop();
+    const auto obj = list.pop();
     EXPECT_EQ(obj->getType(), "A");
     EXPECT_EQ(list.count(), 0);
 }
@@ -59,6 +59,26 @@ TEST(ObjectListTest, FindById) {
     EXPECT_EQ(list.findById(9999), nullptr);
 }
 
+TEST(ObjectListTest, GetByTypeTemplate) {
+    ObjectList list;
+    struct A : TestObject {
+        A() : TestObject("A") {}
+    };
+    struct B : TestObject {
+        B() : TestObject("B") {}
+    };
+
+    auto *a1 = new A{};
+    auto *a2 = new A{};
+    auto *b1 = new B{};
+    list.append(a1);
+    list.append(a2);
+    list.append(b1);
+
+    const auto as = list.getByType("A");
+    EXPECT_EQ(as.size(), 2);
+}
+
 TEST(ObjectListTest, Iterators) {
     ObjectList list;
     list.append(new TestObject("A"));
@@ -70,4 +90,17 @@ TEST(ObjectListTest, Iterators) {
         count++;
     }
     EXPECT_EQ(count, 2);
+}
+
+TEST(ObjectListTest, GetAll) {
+    ObjectList list;
+    auto *obj1 = new TestObject("A");
+    auto *obj2 = new TestObject("B");
+    list.append(obj1);
+    list.append(obj2);
+
+    const auto all = list.getAll();
+    EXPECT_EQ(all.size(), 2);
+    EXPECT_EQ(all[0], obj1);
+    EXPECT_EQ(all[1], obj2);
 }

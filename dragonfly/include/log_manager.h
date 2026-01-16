@@ -1,4 +1,4 @@
-// log_manager.h — Manager of l ogging to file
+// log_manager.h — Manager of logging to file
 
 #pragma once
 

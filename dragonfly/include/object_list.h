@@ -28,8 +28,11 @@ class ObjectList {
     auto remove(const Object* obj_ptr) -> bool;
     auto contains(const Object* obj_ptr) const -> bool;
     void insert(size_t index, Object* obj);
+    auto getAll() const -> std::vector<Object*>;
 
     auto findById(int id) const -> Object*;
+    [[nodiscard]] auto getByType(std::string_view type) const
+        -> std::vector<Object*>;
 
     auto begin() noexcept -> iterator;
     auto end() noexcept -> iterator;

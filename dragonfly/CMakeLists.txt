@@ -4,24 +4,30 @@ add_library(dragonfly::dragonfly ALIAS dragonfly)
 target_sources(dragonfly
     PRIVATE
     src/clock.cpp
+    src/event.cpp
+    src/event_step.cpp
     src/game_manager.cpp
     src/log_manager.cpp
     src/manager.cpp
     src/object.cpp
     src/object_list.cpp
     src/vector.cpp
+    src/world_manager.cpp
     PUBLIC
     FILE_SET HEADERS
     BASE_DIRS include
     FILES
     include/config.h
     include/clock.h
+    include/event.h
+    include/event_step.h
     include/game_manager.h
     include/log_manager.h
     include/manager.h
     include/object.h
     include/object_list.h
     include/vector.h
+    include/world_manager.h
 )
 
 target_compile_features(dragonfly PUBLIC cxx_std_20)

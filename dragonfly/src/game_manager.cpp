@@ -7,6 +7,7 @@
 
 #include "config.h"
 #include "log_manager.h"
+#include "world_manager.h"
 
 namespace df {
 
@@ -26,11 +27,18 @@ auto GameManager::startUp() -> StartupResult {
 
     m_game_clock.bumpFrame();
 
+    if (WM.startUp() != StartupResult::Ok) {
+        return StartupResult::Failed;
+    }
+
     return Manager::startUp();
 }
 
 void GameManager::shutDown() noexcept {
     LM.writeLog(LogLevel::INFO, "GameManager: shutting down");
+
+    WM.shutDown();
+
     LM.shutDown();
 
     Manager::shutDown();
@@ -40,7 +48,9 @@ void GameManager::run() {
     LM.writeLog(LogLevel::DEBUG, "GameManager: run()");
 
     Clock dev_clock;  // DEV WRAPPER - TODO: Rem when there is a way to shut
-                      // down the game loop
+    // down the game loop
+
+    // down the game loop
     const auto dev_runtime = Clock::duration_t(60);
 
     while (!m_game_over) {
@@ -49,7 +59,7 @@ void GameManager::run() {
                                    // start time
 
         // Game loop here
-        std::this_thread::sleep_for(std::chrono::milliseconds(15));
+        WM.update();
 
         // Sleep the remainder of the frame time
         const Clock::duration_t remainder = m_game_clock.getFrameRemainder();
@@ -69,7 +79,7 @@ void GameManager::run() {
     }
 }
 
-void GameManager::setGameOver(bool game_over) { m_game_over = game_over; }
+void GameManager::setGameOver(const bool game_over) { m_game_over = game_over; }
 
 auto GameManager::getGameOver() const -> bool { return m_game_over; }
 

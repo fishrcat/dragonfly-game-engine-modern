@@ -4,7 +4,7 @@
 #include "game_manager.h"
 #include "log_manager.h"
 #include "object.h"
-#include "object_list.h"
+#include "world_manager.h"
 
 class Player : public df::Object {
     public:
@@ -25,19 +25,20 @@ auto main(int argc, char* argv[]) -> int {
 
     LM.writeLog(df::LogLevel::DEBUG, "Started instance of test game");
 
-    df::ObjectList players;
-    players.append(new Player());
+    WM.insertObject(new Player());
+    WM.insertObject(new Enemy());
 
-    df::ObjectList enemies;
-    enemies.append(new Enemy());
-
-    df::ObjectList world_objects;
-    world_objects.append(players);
-    world_objects.append(enemies);
-
-    for (const auto& obj_ptr : world_objects) {
+    for (const auto* obj : WM.getAllObjects()) {
         LM.writeLog(df::LogLevel::DEBUG,
-                    std::format("Object type: {}", obj_ptr->getType()));
+                    std::format("Object type: {}", obj->getType()));
+    }
+    for (const auto* player : WM.objectsOfType("Player")) {
+        LM.writeLog(df::LogLevel::DEBUG,
+                    std::format("Found Player with ID {}", player->getId()));
+    }
+
+    for (df::Object* enemy : WM.objectsOfType("Enemy")) {
+        WM.markForDelete(enemy);
     }
 
     GM.run();

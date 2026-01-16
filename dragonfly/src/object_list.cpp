@@ -63,9 +63,37 @@ void ObjectList::insert(const size_t index, Object* obj) {
         std::unique_ptr<Object>(obj));
 }
 
+auto ObjectList::getAll() const -> std::vector<Object*> {
+    std::vector<Object*> result;
+    result.reserve(m_objects.size());
+
+    for (const auto& obj : m_objects) {
+        result.push_back(obj.get());
+    }
+
+    return result;
+}
+
+auto ObjectList::getByType(const std::string_view type) const
+    -> std::vector<Object*> {
+    std::vector<Object*> result;
+    result.reserve(m_objects.size());
+
+    for (const auto& obj : m_objects) {
+        if (obj->getType() == type) {
+            result.push_back(
+                obj.get());  // return vector of non-owning pointers
+        }
+    }
+
+    return result;
+}
+
 auto ObjectList::findById(const int id) const -> Object* {
     for (const auto& obj : m_objects) {
-        if (obj->getId() == id) return obj.get();
+        if (obj->getId() == id) {
+            return obj.get();
+        }
     }
     return nullptr;
 }
