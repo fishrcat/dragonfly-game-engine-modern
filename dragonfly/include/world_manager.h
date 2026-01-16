@@ -9,36 +9,38 @@
 #include "object.h"
 #include "object_list.h"
 
-#define GM df::GameManager::getInstance()
+#define WM df::WorldManager::getInstance()
 
 namespace df {
 
-class GameManager : public Manager {
+class WorldManager : public Manager {
     public:
-    static auto getInstance() -> GameManager &;  // Singleton
-    ~GameManager() override;
-    GameManager(const GameManager &) = delete;  // Disable copy
-    auto operator=(const GameManager &) -> GameManager & =
-                                               delete;  // Disable assignment
+    static auto getInstance() -> WorldManager &;  // Singleton
+    ~WorldManager() override = default;
+    WorldManager(const WorldManager &) = delete;  // Disable copy
+    auto operator=(const WorldManager &) -> WorldManager & =
+                                                delete;  // Disable assignment
 
     [[nodiscard]] auto startUp() -> StartupResult override;
     void shutDown() noexcept override;
 
     auto insertObject(Object *p_obj) -> int;
-    auto removeObject(Object *p_obj) -> int;
+    auto removeObject(const Object *p_obj) -> int;
 
-    auto getAllObjects() -> ObjectList;
-    [[nodiscard]] auto objectsOfType(std::string type) -> ObjectList;
+    auto getAllObjects() const -> std::vector<Object *>;
+    [[nodiscard]] auto objectsOfType(std::string_view type) const
+        -> std::vector<Object *>;
 
     void update();
 
     auto markForDelete(Object *p_obj) -> int;
+    auto removeDeletions() -> int;
 
     private:
-    GameManager();
+    WorldManager();
 
     ObjectList m_updates;
-    ObjectList m_deletions;
+    std::vector<Object *> m_deletions;
 };
 
 }  // namespace df
