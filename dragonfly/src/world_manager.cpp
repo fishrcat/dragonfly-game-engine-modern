@@ -35,9 +35,9 @@ void WorldManager::shutDown() noexcept {
 
 auto WorldManager::insertObject(Object* p_obj) -> int {
     m_updates.append(p_obj);
-    LM.writeLog(LogLevel::DEBUG,
-                std::format("WorldManager: added object {} of type {} to world",
-                            p_obj->getId(), p_obj->getType()));
+    LM.writeLog(
+        LogLevel::DEBUG,
+        std::format("WorldManager: added object {} to world", p_obj->getId()));
     return 0;
 }
 
@@ -80,11 +80,6 @@ auto WorldManager::markForDelete(Object* p_obj) -> int {
 
 auto WorldManager::removeDeletions() -> int {
     int count = 0;
-
-    for (const auto* obj : getAllObjects()) {
-        LM.writeLog(df::LogLevel::DEBUG,
-                    std::format("Object type: {}", obj->getType()));
-    }
 
     for (const auto* obj : m_deletions) {
         LM.writeLog(

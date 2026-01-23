@@ -26,7 +26,9 @@ class Object {
     [[nodiscard]] auto getPosition() const noexcept
         -> const Vector&;  // Using nodiscard for heavy gets only
 
-    virtual auto eventHandler(const Event* p_e) -> int { return 0; };
+    virtual auto eventHandler([[maybe_unused]] const Event* p_e) -> int {
+        return 0;
+    };
 
     private:
     int m_id{-1};
