@@ -4,6 +4,7 @@
 #include "object.h"
 
 #include "log_manager.h"
+#include "world_manager.h"
 
 namespace df {
 
@@ -16,6 +17,14 @@ Object::Object() {
 
     LM.writeLog(LogLevel::DEBUG,
                 std::format("Object: created object with id {}", getId()));
+
+    // All constructed objects should be added to the world
+    WM.insertObject(this);
+}
+
+Object::~Object() {
+    LM.writeLog(LogLevel::DEBUG,
+                std::format("Object: removed object with id {}", getId()));
 }
 
 void Object::setId(const int new_id) { m_id = new_id; }

@@ -3,6 +3,8 @@
 // Project
 #include "game_manager.h"
 
+#include <event_step.h>
+
 #include <thread>
 
 #include "config.h"
@@ -58,18 +60,24 @@ void GameManager::run() {
         m_game_clock.bumpFrame();  // Increments frame ref num and sets frame
                                    // start time
 
-        // Game loop here
+        // Send the step event to all objects
+        EventStep step(m_game_clock.getFrame());
+        for (auto objects = WM.getAllObjects(); const auto& object : objects) {
+            object->eventHandler(&step);
+        }
+
+        // Update the world state based on event resolutions
         WM.update();
 
         // Sleep the remainder of the frame time
         const Clock::duration_t remainder = m_game_clock.getFrameRemainder();
-        LM.writeLog(LogLevel::DEBUG,
+        LM.writeLog(LogLevel::TRACE,
                     std::format("GameManager: frame sleep {}", remainder));
         std::this_thread::sleep_for(remainder);
 
         // Debug time check
         LM.writeLog(
-            LogLevel::DEBUG,
+            LogLevel::TRACE,
             std::format("GameManager: Total frame time check {}",
                         m_game_clock.delta()));  // Resets m_previous_time
 

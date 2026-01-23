@@ -15,9 +15,9 @@ TEST(WorldManagerTest, SingletonBehavior) {
     WorldManager &gm = WorldManager::getInstance();
 
     // Insert objects
-    gm.insertObject(new TestObject("A"));
-    gm.insertObject(new TestObject("B"));
-    gm.insertObject(new TestObject("C"));
+    new TestObject("A");
+    new TestObject("B");
+    new TestObject("C");
 
     // Verify all objects
     const auto all = gm.getAllObjects();

@@ -35,9 +35,9 @@ void WorldManager::shutDown() noexcept {
 
 auto WorldManager::insertObject(Object* p_obj) -> int {
     m_updates.append(p_obj);
-    LM.writeLog(LogLevel::DEBUG,
-                std::format("WorldManager: added object {} of type {} to world",
-                            p_obj->getId(), p_obj->getType()));
+    LM.writeLog(
+        LogLevel::DEBUG,
+        std::format("WorldManager: added object {} to world", p_obj->getId()));
     return 0;
 }
 
@@ -64,6 +64,7 @@ auto WorldManager::getAllObjects() const -> std::vector<Object*> {
 }
 
 // Usage: for (auto* obj : GM.objectsOfType("Enemy")) {obj->update();}
+// TODO: Convert to template
 auto WorldManager::objectsOfType(const std::string_view type) const
     -> std::vector<Object*> {
     // Non-owning filtered view
@@ -94,6 +95,12 @@ auto WorldManager::removeDeletions() -> int {
                     "but it was not in world",
                     obj->getId(), obj->getType()));
         }
+
+        for (const auto* obj : getAllObjects()) {
+            LM.writeLog(df::LogLevel::DEBUG,
+                        std::format("Object type: {}", obj->getType()));
+        }
+
         count++;
     }
 

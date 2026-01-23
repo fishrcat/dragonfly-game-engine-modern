@@ -3,6 +3,7 @@
 #pragma once
 
 // Engine
+#include "event.h"
 #include "vector.h"
 
 // System
@@ -13,7 +14,7 @@ namespace df {
 class Object {
     public:
     Object();
-    virtual ~Object() = default;
+    virtual ~Object();
 
     void setId(int new_id);
     auto getId() const noexcept -> int;
@@ -24,6 +25,10 @@ class Object {
     void setPosition(const Vector& new_pos);
     [[nodiscard]] auto getPosition() const noexcept
         -> const Vector&;  // Using nodiscard for heavy gets only
+
+    virtual auto eventHandler([[maybe_unused]] const Event* p_e) -> int {
+        return 0;
+    };
 
     private:
     int m_id{-1};

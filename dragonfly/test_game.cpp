@@ -1,4 +1,6 @@
 // Engine
+#include <event_step.h>
+
 #include <chrono>
 
 #include "game_manager.h"
@@ -9,6 +11,20 @@
 class Player : public df::Object {
     public:
     Player() { setType("Player"); }
+
+    auto eventHandler(const df::Event* p_e) -> int override {
+        // Try to cast event to EventStep
+        if (const auto* step_event = dynamic_cast<const df::EventStep*>(p_e)) {
+            // Increment X position by 1 every step
+            auto pos = getPosition();
+            pos.x += 1.0F;
+            setPosition(pos);
+
+            return 1;  // event handled
+        }
+
+        return 0;  // event not handled
+    }
 };
 
 class Enemy : public df::Object {
@@ -25,8 +41,8 @@ auto main(int argc, char* argv[]) -> int {
 
     LM.writeLog(df::LogLevel::DEBUG, "Started instance of test game");
 
-    WM.insertObject(new Player());
-    WM.insertObject(new Enemy());
+    new Player();
+    new Enemy();
 
     for (const auto* obj : WM.getAllObjects()) {
         LM.writeLog(df::LogLevel::DEBUG,
@@ -42,6 +58,11 @@ auto main(int argc, char* argv[]) -> int {
     }
 
     GM.run();
+
+    for (const auto* obj : WM.getAllObjects()) {
+        LM.writeLog(df::LogLevel::DEBUG, std::format("Player end position: {}",
+                                                     obj->getPosition().x));
+    }
 
     GM.shutDown();
 
