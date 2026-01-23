@@ -81,6 +81,11 @@ auto WorldManager::markForDelete(Object* p_obj) -> int {
 auto WorldManager::removeDeletions() -> int {
     int count = 0;
 
+    for (const auto* obj : getAllObjects()) {
+        LM.writeLog(df::LogLevel::DEBUG,
+                    std::format("Object type: {}", obj->getType()));
+    }
+
     for (const auto* obj : m_deletions) {
         LM.writeLog(
             LogLevel::DEBUG,
@@ -95,6 +100,12 @@ auto WorldManager::removeDeletions() -> int {
                     "but it was not in world",
                     obj->getId(), obj->getType()));
         }
+
+        for (const auto* obj : getAllObjects()) {
+            LM.writeLog(df::LogLevel::DEBUG,
+                        std::format("Object type: {}", obj->getType()));
+        }
+
         count++;
     }
 

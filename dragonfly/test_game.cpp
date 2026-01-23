@@ -25,8 +25,8 @@ auto main(int argc, char* argv[]) -> int {
 
     LM.writeLog(df::LogLevel::DEBUG, "Started instance of test game");
 
-    WM.insertObject(new Player());
-    WM.insertObject(new Enemy());
+    new Player();
+    new Enemy();
 
     for (const auto* obj : WM.getAllObjects()) {
         LM.writeLog(df::LogLevel::DEBUG,
@@ -42,6 +42,11 @@ auto main(int argc, char* argv[]) -> int {
     }
 
     GM.run();
+
+    for (const auto* obj : WM.getAllObjects()) {
+        LM.writeLog(df::LogLevel::DEBUG,
+                    std::format("Object type: {}", obj->getType()));
+    }
 
     GM.shutDown();
 
