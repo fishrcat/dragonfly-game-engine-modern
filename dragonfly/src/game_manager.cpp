@@ -61,10 +61,8 @@ void GameManager::run() {
                                    // start time
 
         // Send the step event to all objects
-        EventStep step(m_game_clock.getFrame());
-        for (auto objects = WM.getAllObjects(); const auto& object : objects) {
-            object->eventHandler(&step);
-        }
+        EventStep step;
+        onEvent(&step);
 
         // Update the world state based on event resolutions
         WM.update();
