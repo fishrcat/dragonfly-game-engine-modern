@@ -21,6 +21,7 @@ Ports Dragonfly library and example games to use C++20, CMake, Clang, GoogleTest
   - [Bongo Bear Game](#bongo-bear-game)
 - [TODOs](#todos)
 - [Dragonfly Engine Class Structure](#dragonfly-engine-class-structure)
+- [Resources Collection](#resource-collection)
 
 ---
 
@@ -171,3 +172,25 @@ See `build/flamegraph.svg` for an interactive profile like the following example
 | Object      | Base class for game engine objects             |
 | ViewObject  | View objects displayed on the Heads Up Display |
 | ObjectList  | List container for Objects                     |
+
+---
+
+## Resource Collection
+
+### Dragonfly Engine
+
+* Mark Claypool. Dragonfly - Program a Game Engine from Scratch, Interactive Media and Game Development, Worcester Polytechnic Institute, 2014. Online at: http://dragonfly.wpi.edu/book/
+* Engine reference repo with direct book transcription - https://github.com/Tate-Donnelly/ASCII-Game-Engine
+
+### ASCII Shader Examples and Implementations
+
+* [Image -> ASCII with Edge Detection](https://github.com/gouwsxander/ascii-view)
+  * [Associated YouTube Video](https://www.youtube.com/watch?v=t8aSqlC_Duo)
+* [ASCII Clouds](https://caidan.dev/portfolio/ascii_clouds/?cs=8&wa=0.7&ws=0.5&ni=0.05&vi=0.8&vr=0.75&ba=0.2&ca=1&ts=0.5&h=200&sa=0.3&t1=0.15&t2=0.28&t3=0.4&t4=0.52&t5=0.65&sd=fibylo)
+* [WebGL ASCII Shader](https://tympanus.net/codrops/2026/01/04/efecto-building-real-time-ascii-and-dithering-effects-with-webgl-shaders/)
+* [Unity ASCII Shader](https://github.com/StefanJo3107/ASCII-Rendering-Shader-in-Unity)
+
+### ASCII and Mini Game Ideas
+
+* TinyCity - a city simulation game inspired by SimCity for the Raspberry Pi RP2040 running MicroPython - https://github.com/chrisdiana/TinyCity
+* [TUI Physics Simulator](https://github.com/minimaxir/ballin)
