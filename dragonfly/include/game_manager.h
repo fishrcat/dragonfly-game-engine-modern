@@ -6,8 +6,6 @@
 #include "clock.h"
 #include "manager.h"
 
-// System
-
 #define GM df::GameManager::getInstance()
 
 namespace df {
