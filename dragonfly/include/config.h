@@ -25,6 +25,6 @@ constexpr int WINDOW_VERTICAL_CHARS_DEFAULT = 24;
 constexpr int WINDOW_STYLE_DEFAULT = sf::Style::Titlebar;
 constexpr Color WINDOW_BACKGROUND_COLOR_DEFAULT = Color::Black;
 constexpr std::string WINDOW_TITLE_DEFAULT = "Dragonfly";
-constexpr std::string FONT_FILE_DEFAULT = "dffont.ttf";
+constexpr std::string FONT_FILE_DEFAULT = "df-font.ttf";
 
 }  // namespace df
