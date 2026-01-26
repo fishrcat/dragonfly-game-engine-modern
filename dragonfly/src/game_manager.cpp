@@ -4,9 +4,9 @@
 #include <thread>
 
 // Engine
-#include <event_step.h>
-
 #include "config.h"
+#include "display_manager.h"
+#include "event_step.h"
 #include "game_manager.h"
 #include "log_manager.h"
 #include "world_manager.h"
@@ -29,6 +29,10 @@ auto GameManager::startUp() -> StartupResult {
 
     m_game_clock.bumpFrame();
 
+    if (DM.startUp() != StartupResult::Ok) {
+        return StartupResult::Failed;
+    }
+
     if (WM.startUp() != StartupResult::Ok) {
         return StartupResult::Failed;
     }
@@ -38,6 +42,8 @@ auto GameManager::startUp() -> StartupResult {
 
 void GameManager::shutDown() noexcept {
     LM.writeLog(LogLevel::INFO, "GameManager: shutting down");
+
+    DM.shutDown();
 
     WM.shutDown();
 
@@ -49,11 +55,9 @@ void GameManager::shutDown() noexcept {
 void GameManager::run() {
     LM.writeLog(LogLevel::DEBUG, "GameManager: run()");
 
-    Clock dev_clock;  // DEV WRAPPER - TODO: Rem when there is a way to shut
-    // down the game loop
-
-    // down the game loop
-    const auto dev_runtime = Clock::duration_t(60);
+#ifdef DEBUG_MODE
+    Clock dev_clock;
+#endif
 
     while (!m_game_over) {
         // Start the frame
@@ -64,8 +68,10 @@ void GameManager::run() {
         EventStep step;
         onEvent(&step);
 
-        // Update the world state based on event resolutions
+        // Update the world state based on event resolutions and redraw
         WM.update();
+        WM.draw();
+        DM.swapBuffers();
 
         // Sleep the remainder of the frame time
         const Clock::duration_t remainder = m_game_clock.getFrameRemainder();
@@ -78,10 +84,11 @@ void GameManager::run() {
             LogLevel::TRACE,
             std::format("GameManager: Total frame time check {}",
                         m_game_clock.delta()));  // Resets m_previous_time
-
+#ifdef DEBUG_MODE
         if (dev_clock.split() >= dev_runtime) {
             GM.setGameOver();
         }
+#endif
     }
 }
 

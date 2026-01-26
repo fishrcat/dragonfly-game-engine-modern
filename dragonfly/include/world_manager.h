@@ -32,6 +32,7 @@ class WorldManager : public Manager {
         -> std::vector<Object *>;
 
     void update();
+    void draw() const;
 
     auto markForDelete(Object *p_obj) -> int;
     auto removeDeletions() -> int;

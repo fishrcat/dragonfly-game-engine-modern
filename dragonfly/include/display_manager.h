@@ -12,6 +12,12 @@
 
 namespace df {
 
+// ASCII char <-> window pixel utils
+auto charHeight() -> float;
+auto charWidth() -> float;
+auto spacesToPixels(Vector spaces) -> Vector;
+auto pixelsToSpaces(Vector pixels) -> Vector;
+
 class DisplayManager : public Manager {
     private:
     DisplayManager();
@@ -41,12 +47,13 @@ class DisplayManager : public Manager {
     auto getHorizontalPixels() const -> int;
     auto getVerticalPixels() const -> int;
 
-    auto swapBuffers() -> int;
+    auto swapBuffers() const -> int;
 
     auto getWindow() const -> sf::RenderWindow *;
 
     void setBackgroundColor(df::Color new_color);
-    auto loadFont(std::string_view font_path = FONT_FILE_DEFAULT) -> int;
+    auto loadFont(std::optional<std::string_view> font_path = std::nullopt)
+        -> int;
 };
 
 }  // namespace df

@@ -8,7 +8,7 @@
 
 namespace df {
 
-Object::Object() {
+Object::Object(const Vector& init_pos) : m_position(init_pos) {
     static int last_obj_id = -1;
 
     // Increment the last object id and assign to the latest object

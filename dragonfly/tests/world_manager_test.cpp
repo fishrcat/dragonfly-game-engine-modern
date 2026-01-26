@@ -9,6 +9,7 @@ using namespace df;
 class TestObject : public Object {
     public:
     explicit TestObject(const std::string &type) { setType(type); }
+    auto draw() -> int override { return 0; };
 };
 
 TEST(WorldManagerTest, SingletonBehavior) {

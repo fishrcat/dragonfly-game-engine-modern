@@ -13,7 +13,7 @@ namespace df {
 
 class Object {
     public:
-    Object();
+    explicit Object(const Vector& init_pos = {});
     virtual ~Object();
 
     void setId(int new_id);
@@ -29,6 +29,8 @@ class Object {
     virtual auto eventHandler([[maybe_unused]] const Event* p_e) -> int {
         return 0;
     };
+
+    virtual auto draw() -> int = 0;
 
     private:
     int m_id{-1};

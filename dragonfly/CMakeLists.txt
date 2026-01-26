@@ -21,6 +21,7 @@ target_sources(dragonfly
     include/config.h
     include/clock.h
     include/color.h
+    include/default_font.h
     include/display_manager.h
     include/event.h
     include/event_step.h
