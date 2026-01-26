@@ -106,7 +106,7 @@ See `build/flamegraph.svg` for an interactive profile like the following example
   - [x] DC2: Clock & GameManager
   - [x] DC3: Vector & Object
   - [x] DC4: Dragonfly Egg
-  - [ ] DC5: Display Manager
+  - [x] DC5: Display Manager
   - [ ] DC6: Input Manager
   - [ ] DC7: Dragonfly Naiad
   - [ ] DC8: Sprite & Resource Manager
