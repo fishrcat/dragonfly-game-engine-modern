@@ -31,7 +31,9 @@ jobs:
             libudev-dev \
             libopenal-dev \
             libfreetype6-dev \
-            pkg-config
+            pkg-config \
+            libvorbis-dev \
+            libogg-dev
 
       - name: Configure CMake (generate compile_commands.json)
         run: cmake -S . -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON

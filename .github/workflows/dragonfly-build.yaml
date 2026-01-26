@@ -30,7 +30,9 @@ jobs:
           libudev-dev \
           libopenal-dev \
           libfreetype6-dev \
-          pkg-config
+          pkg-config \
+          libvorbis-dev \
+          libogg-dev
 
       - name: Install dependencies on macOS
         if: matrix.os == 'macos-latest'
