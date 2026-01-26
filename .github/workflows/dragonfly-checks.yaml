@@ -29,7 +29,9 @@ jobs:
             libxext-dev \
             libgl1-mesa-dev \
             libudev-dev \
-            libopenal-dev
+            libopenal-dev \
+            libfreetype6-dev \
+            pkg-config
 
       - name: Configure CMake (generate compile_commands.json)
         run: cmake -S . -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON

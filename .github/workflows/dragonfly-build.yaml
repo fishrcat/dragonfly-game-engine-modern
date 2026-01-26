@@ -28,7 +28,9 @@ jobs:
           libxext-dev \
           libgl1-mesa-dev \
           libudev-dev \
-          libopenal-dev
+          libopenal-dev \
+          libfreetype6-dev \
+          pkg-config
 
       - name: Install dependencies on macOS
         if: matrix.os == 'macos-latest'
