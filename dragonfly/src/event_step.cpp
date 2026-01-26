@@ -5,9 +5,8 @@
 
 namespace df {
 
-EventStep::EventStep(const int init_step_count)
-    : m_step_count(init_step_count) {
-    setType(STEP_EVENT);
-}
+int EventStep::s_step_global = 0;
+
+EventStep::EventStep() : m_step_count(s_step_global++) { setType(STEP_EVENT); }
 
 }  // namespace df

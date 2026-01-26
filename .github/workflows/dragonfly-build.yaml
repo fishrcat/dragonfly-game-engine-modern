@@ -14,6 +14,33 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Install dependencies on Ubuntu
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          sudo apt update
+          sudo apt install -y \
+          cmake \
+          g++ \
+          libx11-dev \
+          libxrandr-dev \
+          libxcursor-dev \
+          libxi-dev \
+          libxext-dev \
+          libgl1-mesa-dev \
+          libudev-dev \
+          libopenal-dev \
+          libfreetype6-dev \
+          pkg-config \
+          libvorbis-dev \
+          libogg-dev \
+          libflac-dev
+
+      - name: Install dependencies on macOS
+        if: matrix.os == 'macos-latest'
+        run: |
+          brew update
+          brew install cmake sfml
+
       - name: Configure
         run: cmake -S . -B build
 

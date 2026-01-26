@@ -2,6 +2,9 @@
 
 #pragma once
 
+// Enging
+#include "event.h"
+
 // System
 #include <cstdint>
 #include <string>
@@ -25,6 +28,8 @@ class Manager {
     virtual void shutDown() noexcept;
 
     auto isStarted() const -> bool;
+
+    static auto onEvent(const Event* p_e) -> int;
 
     protected:
     void setType(const std::string& type) { m_type = type; }

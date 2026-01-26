@@ -4,6 +4,7 @@ add_library(dragonfly::dragonfly ALIAS dragonfly)
 target_sources(dragonfly
     PRIVATE
     src/clock.cpp
+    src/display_manager.cpp
     src/event.cpp
     src/event_step.cpp
     src/game_manager.cpp
@@ -19,6 +20,8 @@ target_sources(dragonfly
     FILES
     include/config.h
     include/clock.h
+    include/color.h
+    include/display_manager.h
     include/event.h
     include/event_step.h
     include/game_manager.h
@@ -38,6 +41,23 @@ target_include_directories(dragonfly
 )
 
 target_compile_options(dragonfly PRIVATE -Wall -Wextra -Wpedantic)
+
+include(FetchContent)
+FetchContent_Declare(SFML
+    GIT_REPOSITORY https://github.com/SFML/SFML.git
+    GIT_TAG 3.0.2
+    GIT_SHALLOW ON
+    EXCLUDE_FROM_ALL
+    SYSTEM)
+FetchContent_MakeAvailable(SFML)
+
+target_link_libraries(dragonfly
+    PUBLIC
+    SFML::Graphics
+    SFML::Window
+    SFML::System
+    SFML::Audio
+)
 
 option(DRAGONFLY_BUILD_TESTS "Build Dragonfly tests" ON)
 

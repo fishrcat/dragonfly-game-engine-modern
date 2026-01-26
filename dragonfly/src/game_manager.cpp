@@ -1,13 +1,13 @@
 // game_manager.cpp — Manager of the game loop
 
-// Project
-#include "game_manager.h"
-
-#include <event_step.h>
-
+// System
 #include <thread>
 
+// Engine
+#include <event_step.h>
+
 #include "config.h"
+#include "game_manager.h"
 #include "log_manager.h"
 #include "world_manager.h"
 
@@ -61,10 +61,8 @@ void GameManager::run() {
                                    // start time
 
         // Send the step event to all objects
-        EventStep step(m_game_clock.getFrame());
-        for (auto objects = WM.getAllObjects(); const auto& object : objects) {
-            object->eventHandler(&step);
-        }
+        EventStep step;
+        onEvent(&step);
 
         // Update the world state based on event resolutions
         WM.update();

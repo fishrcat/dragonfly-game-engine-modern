@@ -21,8 +21,8 @@ TEST(EventTest, TypeIsSetCorrectly) {
 }
 
 TEST(EventStepTest, StepEventInitsCorrectly) {
-    const EventStep step_event(5);
+    const EventStep step_event;
 
     EXPECT_EQ(step_event.getType(), "df::step");
-    EXPECT_EQ(step_event.getStepCount(), 5);
+    EXPECT_EQ(step_event.getStepCount(), 0);
 }

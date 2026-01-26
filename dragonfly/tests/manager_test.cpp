@@ -30,3 +30,11 @@ TEST_F(ManagerTest, TypeIsSetCorrectly) {
 
     EXPECT_EQ(manager.getType(), "Manager");
 }
+
+TEST_F(ManagerTest, OnEventReturnsCount) {
+    const df::Event event;
+
+    const int result = TestManager::onEvent(&event);
+
+    EXPECT_EQ(result, 1);
+}
