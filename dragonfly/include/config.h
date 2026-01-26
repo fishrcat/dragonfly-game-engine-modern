@@ -7,6 +7,8 @@
 #include "color.h"
 
 // System
+#include <clock.h>
+
 #include <SFML/Graphics.hpp>
 #include <chrono>
 
@@ -25,6 +27,11 @@ constexpr int WINDOW_VERTICAL_CHARS_DEFAULT = 24;
 constexpr int WINDOW_STYLE_DEFAULT = sf::Style::Titlebar;
 constexpr Color WINDOW_BACKGROUND_COLOR_DEFAULT = Color::Black;
 constexpr std::string WINDOW_TITLE_DEFAULT = "Dragonfly";
-constexpr std::string FONT_FILE_DEFAULT = "df-font.ttf";
+
+// Graphics Settings
+inline constexpr std::string FONT_FILE;
+
+// Debug Mode Settings
+constexpr auto dev_runtime = Clock::duration_t(600);
 
 }  // namespace df

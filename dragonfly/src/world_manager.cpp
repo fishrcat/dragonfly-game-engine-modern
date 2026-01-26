@@ -73,6 +73,12 @@ auto WorldManager::objectsOfType(const std::string_view type) const
 
 void WorldManager::update() { removeDeletions(); }
 
+void WorldManager::draw() const {
+    for (auto* obj : getAllObjects()) {
+        obj->draw();
+    }
+}
+
 auto WorldManager::markForDelete(Object* p_obj) -> int {
     m_deletions.push_back(p_obj);  // just store raw pointer
     return 0;
@@ -94,11 +100,6 @@ auto WorldManager::removeDeletions() -> int {
                     "WorldManager: Tried to remove object {} of type {} "
                     "but it was not in world",
                     obj->getId(), obj->getType()));
-        }
-
-        for (const auto* obj : getAllObjects()) {
-            LM.writeLog(df::LogLevel::DEBUG,
-                        std::format("Object type: {}", obj->getType()));
         }
 
         count++;

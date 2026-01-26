@@ -2,11 +2,18 @@
 
 #pragma once
 
+#include "SFML/System/Vector2.hpp"
+
 namespace df {
 
 struct Vector {
     float x{0.F};
     float y{0.F};
+
+    // SFML repr util
+    [[nodiscard]] constexpr auto toSF() const noexcept -> sf::Vector2f {
+        return {x, y};
+    }
 
     constexpr Vector() = default;
     constexpr Vector(const float x_, const float y_) : x(x_), y(y_) {}
