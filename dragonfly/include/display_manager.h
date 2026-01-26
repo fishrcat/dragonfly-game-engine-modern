@@ -1,9 +1,10 @@
-// Display_manager.h — Manager of the graphics display
+// display_manager.h — Manager of the graphics display
 
 #pragma once
 
 // Project
 #include "color.h"
+#include "config.h"
 #include "manager.h"
 #include "vector.h"
 
@@ -21,6 +22,7 @@ class DisplayManager : public Manager {
     int m_window_vertical_pixels;
     int m_window_horizontal_chars;
     int m_window_vertical_chars;
+    df::Color m_background_color{WINDOW_BACKGROUND_COLOR_DEFAULT};
 
     public:
     DisplayManager(const DisplayManager &) = delete;  // Disable copy
@@ -41,7 +43,10 @@ class DisplayManager : public Manager {
 
     auto swapBuffers() -> int;
 
-    auto getWindow() const -> sf::RenderWindow &;
+    auto getWindow() const -> sf::RenderWindow *;
+
+    void setBackgroundColor(df::Color new_color);
+    auto loadFont(std::string_view font_path = FONT_FILE_DEFAULT) -> int;
 };
 
 }  // namespace df

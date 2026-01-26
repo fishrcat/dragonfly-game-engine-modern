@@ -1,13 +1,13 @@
 // game_manager.cpp — Manager of the game loop
 
-// Project
-#include "game_manager.h"
-
-#include <event_step.h>
-
+// System
 #include <thread>
 
+// Engine
+#include <event_step.h>
+
 #include "config.h"
+#include "game_manager.h"
 #include "log_manager.h"
 #include "world_manager.h"
 

@@ -1,12 +1,11 @@
 // log_manager.cpp — Manager of logging to file
 
-// Project
+// Engine
 #include "log_manager.h"
 
 #include "clock.h"
 
 // System
-#include <chrono>
 #include <cstdarg>
 #include <cstdio>
 #include <ctime>

@@ -4,6 +4,7 @@ add_library(dragonfly::dragonfly ALIAS dragonfly)
 target_sources(dragonfly
     PRIVATE
     src/clock.cpp
+    src/display_manager.cpp
     src/event.cpp
     src/event_step.cpp
     src/game_manager.cpp
@@ -20,6 +21,7 @@ target_sources(dragonfly
     include/config.h
     include/clock.h
     include/color.h
+    include/display_manager.h
     include/event.h
     include/event_step.h
     include/game_manager.h
