@@ -32,7 +32,8 @@ jobs:
           libfreetype6-dev \
           pkg-config \
           libvorbis-dev \
-          libogg-dev
+          libogg-dev \
+          libflac-dev
 
       - name: Install dependencies on macOS
         if: matrix.os == 'macos-latest'
