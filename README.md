@@ -108,6 +108,7 @@ See `build/flamegraph.svg` for an interactive profile like the following example
   - [x] DC4: Dragonfly Egg
   - [x] DC5: Display Manager
   - [ ] DC6: Input Manager
+    - [ ] DC6+: Config Manager and Dev Tooling Upgrades
   - [ ] DC7: Dragonfly Naiad
   - [ ] DC8: Sprite & Resource Manager
   - [ ] DC9: Sprite Animation
@@ -121,7 +122,7 @@ See `build/flamegraph.svg` for an interactive profile like the following example
 - [ ] **Development Environment V2** - Update the development workflows for build matrix of library and example games
   - [ ] Enable multi-build of all example games and dragonfly library
   - [ ] Enable releases to GitHub page from action build files
-- [ ] **Feature Extension** - Write an ASCII shader for the engine
+- [ ] **Feature Extension** - Write an ASCII shader with dithering and edge detection for the engine
 - [ ] **Bongo Bear** - Create advanced game example using all library features
 
 ---
@@ -189,6 +190,8 @@ See `build/flamegraph.svg` for an interactive profile like the following example
 * [ASCII Clouds](https://caidan.dev/portfolio/ascii_clouds/?cs=8&wa=0.7&ws=0.5&ni=0.05&vi=0.8&vr=0.75&ba=0.2&ca=1&ts=0.5&h=200&sa=0.3&t1=0.15&t2=0.28&t3=0.4&t4=0.52&t5=0.65&sd=fibylo)
 * [WebGL ASCII Shader](https://tympanus.net/codrops/2026/01/04/efecto-building-real-time-ascii-and-dithering-effects-with-webgl-shaders/)
 * [Unity ASCII Shader](https://github.com/StefanJo3107/ASCII-Rendering-Shader-in-Unity)
+* [JS Deep Dive into ASCII Rendering](https://alexharri.com/blog/ascii-rendering)
+* [Interactive Ordered Dithering Explainer Series](https://visualrambling.space/dithering-part-2/)
 
 ### ASCII and Mini Game Ideas
 
