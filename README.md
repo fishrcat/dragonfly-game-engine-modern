@@ -4,6 +4,8 @@ Modernized version of the Dragonfly C++ Text-Based Game Engine.
 
 Ports Dragonfly library and example games to use C++20, CMake, Clang, GoogleTest, Perf, etc.
 
+Extends with ASCII shader and additional sample game.
+
 > Mark Claypool. Dragonfly - Program a Game Engine from Scratch, Interactive Media and Game Development, Worcester Polytechnic Institute, 2014. Online at: http://dragonfly.wpi.edu/book/
 
 ---
@@ -101,15 +103,17 @@ See `build/flamegraph.svg` for an interactive profile like the following example
   - [x] Migrate to CMake
   - [x] Integrate Clang and GoogleTest
   - [x] Initialize GitHub actions to lint/build/test PR commits
-- [ ] **Dragonfly** - Recreate dragonfly library following the [Program a Game Engine from Scratch Book](https://dragonfly.wpi.edu/book/index.html) development checkpoints
+- [ ] **Dragonfly** - Recreate dragonfly library following the [Program a Game Engine from Scratch Book](https://dragonfly.wpi.edu/book/index.html) development checkpoints (with a few non-book content quality of life updates interspersed)
   - [x] DC1: Manager & LogManager
   - [x] DC2: Clock & GameManager
   - [x] DC3: Vector & Object
+  - [x] DEV: *(Non-book content)* Performance Profiling with Flamegraphs
   - [x] DC4: Dragonfly Egg
   - [x] DC5: Display Manager
   - [ ] DC6: Input Manager
-    - [ ] DC6+: Config Manager and Dev Tooling Upgrades
+  - [ ] DEV: *(Non-book content)* Config Manager and Dev Tooling Upgrades
   - [ ] DC7: Dragonfly Naiad
+  - [ ] DEV: *(Non-book content)* Integrations Tests
   - [ ] DC8: Sprite & Resource Manager
   - [ ] DC9: Sprite Animation
   - [ ] DC10: Collisions & Views
@@ -124,6 +128,9 @@ See `build/flamegraph.svg` for an interactive profile like the following example
   - [ ] Enable releases to GitHub page from action build files
 - [ ] **Feature Extension** - Write an ASCII shader with dithering and edge detection for the engine
 - [ ] **Bongo Bear** - Create advanced game example using all library features
+- [ ] **Other Library Modernization Passes**
+  - [ ] Use templates rather than string types for objects/managers/etc.
+  - [ ] Take a pass over design decisions wrt Game Engine Architecture, Gregory read
 
 ---
 
@@ -159,7 +166,7 @@ See `build/flamegraph.svg` for an interactive profile like the following example
 | Class            | Description                                   |
 |------------------|-----------------------------------------------|
 | Manager          | Base class for engine managers                |
-| DisplayManager   | Manager of the graphics display               |
+| DisplayManager   | Manager of the graphics display             Flamegraph  |
 | GameManager      | Manager of the game loop                      |
 | InputManager     | Manager of player input (keyboard and mouse) |
 | LogManager       | Manager of the logfile                        |
