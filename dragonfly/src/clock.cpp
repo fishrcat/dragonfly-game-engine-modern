@@ -1,6 +1,6 @@
 // clock.cpp — System time interface with frame-specific references
 
-// Project
+// Engine
 #include "clock.h"
 
 // System

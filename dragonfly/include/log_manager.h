@@ -2,7 +2,7 @@
 
 #pragma once
 
-// Project
+// Engine
 #include "clock.h"
 #include "config.h"
 #include "manager.h"
