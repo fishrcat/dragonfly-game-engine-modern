@@ -28,10 +28,10 @@ class EventKeyboard : public Event {
     public:
     EventKeyboard() { setType(KEYBOARD_EVENT); }
 
-    void setKey(Input::Keyboard::Key new_key) { m_key = new_key; }
+    void setKey(const Input::Keyboard::Key new_key) { m_key = new_key; }
     auto getKey() const -> Input::Keyboard::Key { return m_key; }
 
-    void setAction(Input::Keyboard::Action new_action) {
+    void setAction(const Input::Keyboard::Action new_action) {
         m_action = new_action;
     }
     auto getAction() const -> Input::Keyboard::Action { return m_action; }

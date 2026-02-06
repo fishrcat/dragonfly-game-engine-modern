@@ -29,13 +29,17 @@ class EventMouse : public Event {
     public:
     EventMouse() { setType(MOUSE_EVENT); }
 
-    void setButton(Input::Mouse::Button new_button) { m_button = new_button; }
+    void setButton(const Input::Mouse::Button new_button) {
+        m_button = new_button;
+    }
     auto getButton() const -> Input::Mouse::Button { return m_button; }
 
-    void setAction(Input::Mouse::Action new_action) { m_action = new_action; }
+    void setAction(const Input::Mouse::Action new_action) {
+        m_action = new_action;
+    }
     auto getAction() const -> Input::Mouse::Action { return m_action; }
 
-    void setPos(Vector new_pos) { m_pos = new_pos; }
+    void setPos(const Vector new_pos) { m_pos = new_pos; }
     auto getPos() const -> Vector { return m_pos; }
 
     private:
