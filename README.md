@@ -110,7 +110,7 @@ See `build/flamegraph.svg` for an interactive profile like the following example
   - [x] DC4: --- Dragonfly Egg ---
   - [x] DEV: *(Non-book content)* Performance Profiling with Flamegraphs
   - [x] DC5: Display Manager
-  - [x] DC6: Input Manager
+  - [x] DC6: Input Manager and Input Events
   - [ ] DC7: --- Dragonfly Naiad ---
   - [ ] DEV: *(Non-book content)* Integrations Tests and Audit Log Levels
   - [ ] DEV: *(Non-book content)* Config Manager and Dev Tooling Upgrades
