@@ -28,7 +28,7 @@ class DisplayManager : public Manager {
     int m_window_vertical_pixels;
     int m_window_horizontal_chars;
     int m_window_vertical_chars;
-    df::Color m_background_color{WINDOW_BACKGROUND_COLOR_DEFAULT};
+    Color m_background_color{WINDOW_BACKGROUND_COLOR_DEFAULT};
 
     public:
     DisplayManager(const DisplayManager &) = delete;  // Disable copy
@@ -51,7 +51,7 @@ class DisplayManager : public Manager {
 
     auto getWindow() const -> sf::RenderWindow *;
 
-    void setBackgroundColor(df::Color new_color);
+    void setBackgroundColor(Color new_color);
     auto loadFont(std::optional<std::string_view> font_path = std::nullopt)
         -> int;
 };

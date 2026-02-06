@@ -1,21 +1,20 @@
-// event_step.h — Event of type df::step
-
 #pragma once
 
-// Engine
 #include "event.h"
 
 namespace df {
-const std::string STEP_EVENT = "df::step";
+
+inline constexpr const char* STEP_EVENT = "df::step";
 
 class EventStep : public Event {
     public:
-    EventStep();
+    EventStep() : m_step_count(s_step_global++) { setType(STEP_EVENT); }
 
     auto getStepCount() const -> int { return m_step_count; }
 
     private:
-    static int s_step_global;
-    int m_step_count{};
+    inline static int s_step_global = 0;
+    int m_step_count{0};
 };
+
 }  // namespace df
