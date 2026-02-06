@@ -3,7 +3,6 @@
 
 // System
 #include <SFML/Graphics.hpp>
-#include <cstdint>
 
 namespace df {
 

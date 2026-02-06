@@ -7,7 +7,8 @@
 
 namespace df {
 
-const std::string UNDEFINED_EVENT = "df::undefined";
+// TODO: Replace event type strings with templating
+inline constexpr auto UNDEFINED_EVENT = "df::undefined";
 
 class Event {
     public:
@@ -15,7 +16,7 @@ class Event {
     virtual ~Event() = default;
 
     void setType(const std::string& type) { m_event_type = type; }
-    auto getType() const noexcept -> std::string;
+    auto getType() const noexcept -> std::string { return m_event_type; };
 
     private:
     std::string m_event_type{UNDEFINED_EVENT};

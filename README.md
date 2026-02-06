@@ -107,13 +107,13 @@ See `build/flamegraph.svg` for an interactive profile like the following example
   - [x] DC1: Manager & LogManager
   - [x] DC2: Clock & GameManager
   - [x] DC3: Vector & Object
+  - [x] DC4: --- Dragonfly Egg ---
   - [x] DEV: *(Non-book content)* Performance Profiling with Flamegraphs
-  - [x] DC4: Dragonfly Egg
   - [x] DC5: Display Manager
-  - [ ] DC6: Input Manager
+  - [x] DC6: Input Manager
+  - [ ] DC7: --- Dragonfly Naiad ---
+  - [ ] DEV: *(Non-book content)* Integrations Tests and Audit Log Levels
   - [ ] DEV: *(Non-book content)* Config Manager and Dev Tooling Upgrades
-  - [ ] DC7: Dragonfly Naiad
-  - [ ] DEV: *(Non-book content)* Integrations Tests
   - [ ] DC8: Sprite & Resource Manager
   - [ ] DC9: Sprite Animation
   - [ ] DC10: Collisions & Views
@@ -121,7 +121,7 @@ See `build/flamegraph.svg` for an interactive profile like the following example
   - [ ] DC12: Event Filtering
   - [ ] DC13: View Objects
   - [ ] DC14: Scene Graph
-  - [ ] DC15: Dragonfly
+  - [ ] DC15: --- Dragonfly ---
   - [ ] Rebuild Saucer Shoot game to test final version
 - [ ] **Development Environment V2** - Update the development workflows for build matrix of library and example games
   - [ ] Enable multi-build of all example games and dragonfly library

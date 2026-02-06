@@ -5,9 +5,8 @@ target_sources(dragonfly
     PRIVATE
     src/clock.cpp
     src/display_manager.cpp
-    src/event.cpp
-    src/event_step.cpp
     src/game_manager.cpp
+    src/input_manager.cpp
     src/log_manager.cpp
     src/manager.cpp
     src/object.cpp
@@ -24,8 +23,11 @@ target_sources(dragonfly
     include/default_font.h
     include/display_manager.h
     include/event.h
+    include/event_keyboard.h
+    include/event_mouse.h
     include/event_step.h
     include/game_manager.h
+    include/input_manager.h
     include/log_manager.h
     include/manager.h
     include/object.h
