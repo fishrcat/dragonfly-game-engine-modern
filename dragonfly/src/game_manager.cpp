@@ -8,6 +8,7 @@
 #include "display_manager.h"
 #include "event_step.h"
 #include "game_manager.h"
+#include "input_manager.h"
 #include "log_manager.h"
 #include "world_manager.h"
 
@@ -33,6 +34,10 @@ auto GameManager::startUp() -> StartupResult {
         return StartupResult::Failed;
     }
 
+    if (IM.startUp() != StartupResult::Ok) {
+        return StartupResult::Failed;
+    }
+
     if (WM.startUp() != StartupResult::Ok) {
         return StartupResult::Failed;
     }
@@ -44,6 +49,8 @@ void GameManager::shutDown() noexcept {
     LM.writeLog(LogLevel::INFO, "GameManager: shutting down");
 
     DM.shutDown();
+
+    IM.shutDown();
 
     WM.shutDown();
 

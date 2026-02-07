@@ -12,6 +12,7 @@ namespace df::Input::Keyboard {
 enum class Action : std::uint8_t {
     Undefined,
     Pressed,
+    Held,
     Released,
 };
 
@@ -26,7 +27,15 @@ inline constexpr auto KEYBOARD_EVENT = "df::keyboard";
 
 class EventKeyboard : public Event {
     public:
-    EventKeyboard() { setType(KEYBOARD_EVENT); }
+    EventKeyboard()
+        : EventKeyboard(Input::Keyboard::Key::Unknown,
+                        Input::Keyboard::Action::Undefined) {}
+
+    EventKeyboard(const Input::Keyboard::Key key,
+                  const Input::Keyboard::Action action)
+        : m_key(key), m_action(action) {
+        setType(KEYBOARD_EVENT);
+    }
 
     void setKey(const Input::Keyboard::Key new_key) { m_key = new_key; }
     auto getKey() const -> Input::Keyboard::Key { return m_key; }

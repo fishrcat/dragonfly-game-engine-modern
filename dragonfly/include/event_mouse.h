@@ -7,12 +7,14 @@
 // System
 #include <SFML/Window/Mouse.hpp>
 #include <cstdint>
+#include <optional>
 
 namespace df::Input::Mouse {
 
 enum class Action : std::uint8_t {
     Undefined,
     Clicked,
+    Held,
     Moved,
 };
 
@@ -27,12 +29,23 @@ inline constexpr auto MOUSE_EVENT = "df::mouse";
 
 class EventMouse : public Event {
     public:
-    EventMouse() { setType(MOUSE_EVENT); }
+    // Default (undefined event)
+    EventMouse()
+        : EventMouse(std::nullopt, Input::Mouse::Action::Undefined, Vector{}) {}
 
-    void setButton(const Input::Mouse::Button new_button) {
+    // Fully-initialized event
+    EventMouse(const std::optional<Input::Mouse::Button> button,
+               const Input::Mouse::Action action, const Vector pos)
+        : m_button(button), m_action(action), m_pos(pos) {
+        setType(MOUSE_EVENT);
+    }
+
+    void setButton(const std::optional<Input::Mouse::Button> new_button) {
         m_button = new_button;
     }
-    auto getButton() const -> Input::Mouse::Button { return m_button; }
+    auto getButton() const -> std::optional<Input::Mouse::Button> {
+        return m_button;
+    }
 
     void setAction(const Input::Mouse::Action new_action) {
         m_action = new_action;
@@ -43,7 +56,7 @@ class EventMouse : public Event {
     auto getPos() const -> Vector { return m_pos; }
 
     private:
-    Input::Mouse::Button m_button;
+    std::optional<Input::Mouse::Button> m_button;
     Input::Mouse::Action m_action;
     Vector m_pos;
 };

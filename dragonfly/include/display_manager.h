@@ -49,7 +49,7 @@ class DisplayManager : public Manager {
 
     auto swapBuffers() const -> int;
 
-    auto getWindow() const -> sf::RenderWindow *;
+    auto getWindow() const -> sf::RenderWindow * { return m_p_window; };
 
     void setBackgroundColor(Color new_color);
     auto loadFont(std::optional<std::string_view> font_path = std::nullopt)

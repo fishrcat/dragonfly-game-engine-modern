@@ -35,7 +35,7 @@ DisplayManager::DisplayManager() {
     m_window_horizontal_pixels = WINDOW_HORIZONTAL_PIXELS_DEFAULT;
     m_window_vertical_pixels = WINDOW_VERTICAL_PIXELS_DEFAULT;
 
-    setBackgroundColor(df::Color::Black);
+    setBackgroundColor(Color::Black);
 }
 
 auto DisplayManager::getInstance() -> DisplayManager& {

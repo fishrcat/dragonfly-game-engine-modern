@@ -11,7 +11,6 @@ namespace df {
 
 class InputManager : public Manager {
     public:
-    ~InputManager() override;
     InputManager(const InputManager&) = delete;  // Disable copy
     auto operator=(const InputManager&) -> InputManager& =
                                                delete;  // Disable assignment
@@ -22,7 +21,7 @@ class InputManager : public Manager {
         -> StartupResult override;  // Enforce startup checks
     void shutDown() noexcept override;
 
-    void getInput() const;
+    static void getInput();
 
     private:
     InputManager();
