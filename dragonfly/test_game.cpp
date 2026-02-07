@@ -1,8 +1,9 @@
 // System
 #include <chrono>
+#include <format>
 
 // Engine
-#include <event_step.h>
+#include <event_keyboard.h>
 
 #include "display_manager.h"
 #include "game_manager.h"
@@ -35,10 +36,15 @@ class Player : public df::Object {
     }
 
     auto eventHandler(const df::Event* p_e) -> int override {
-        if (const auto* step_event = dynamic_cast<const df::EventStep*>(p_e)) {
-            auto pos = getPosition();
-            pos.x += 1.0F;
-            setPosition(pos);
+        if (const auto* key_event =
+                dynamic_cast<const df::EventKeyboard*>(p_e)) {
+            if (key_event->getKey() == df::Input::Keyboard::Key::Enter &&
+                key_event->getAction() ==
+                    df::Input::Keyboard::Action::Pressed) {
+                auto pos = getPosition();
+                pos.x += 1.0F;
+                setPosition(pos);
+            }
 
             return 1;
         }
