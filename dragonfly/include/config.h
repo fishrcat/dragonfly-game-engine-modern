@@ -32,6 +32,7 @@ constexpr std::string WINDOW_TITLE_DEFAULT = "Dragonfly";
 inline constexpr std::string FONT_FILE;
 
 // Debug Mode Settings
-constexpr auto dev_runtime = Clock::duration_t(600);
+
+constexpr auto dev_runtime = Clock::duration_t(6000);
 
 }  // namespace df

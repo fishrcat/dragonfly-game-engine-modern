@@ -75,6 +75,9 @@ void GameManager::run() {
         EventStep step;
         onEvent(&step);
 
+        // Get any input events
+        IM.getInput();
+
         // Update the world state based on event resolutions and redraw
         WM.update();
         WM.draw();
