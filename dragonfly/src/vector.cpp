@@ -19,4 +19,9 @@ void Vector::normalize() noexcept {
     }
 }
 
+void Vector::scale(const float s) noexcept {
+    x = x * s;
+    y = y * s;
+}
+
 }  // namespace df

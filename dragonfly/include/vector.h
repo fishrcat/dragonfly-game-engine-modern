@@ -20,6 +20,7 @@ struct Vector {
 
     [[nodiscard]] auto magnitude() const noexcept -> float;
     void normalize() noexcept;
+    void scale(float s) noexcept;
 
     // Unary operators
     constexpr auto operator+() const noexcept -> Vector { return *this; }
