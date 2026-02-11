@@ -43,12 +43,16 @@ class Object {
 
     virtual auto draw() -> int = 0;
 
+    auto setAltitude(int new_altitude) -> int;
+    auto getAltitude() const -> int { return m_altitude; }
+
     private:
     int m_id{-1};
     std::string m_type;
 
-    Vector m_position;
+    int m_altitude{0};
 
+    Vector m_position;
     Vector m_direction;
     float m_speed{0.0};
 };

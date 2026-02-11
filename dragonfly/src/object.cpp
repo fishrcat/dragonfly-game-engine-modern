@@ -3,6 +3,7 @@
 // Engine
 #include "object.h"
 
+#include "config.h"
 #include "log_manager.h"
 #include "world_manager.h"
 
@@ -41,6 +42,15 @@ auto Object::getVelocity() const -> Vector {
 
 auto Object::predictPosition() const -> Vector {
     return m_position + getVelocity();
+}
+
+auto Object::setAltitude(const int new_altitude) -> int {
+    if (new_altitude > 0 && new_altitude <= MAX_ALTITUDE) {
+        m_altitude = new_altitude;
+        return 0;
+    }
+
+    return -1;
 }
 
 }  // namespace df
