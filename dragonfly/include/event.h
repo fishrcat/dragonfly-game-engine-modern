@@ -16,7 +16,7 @@ class Event {
     virtual ~Event() = default;
 
     void setType(const std::string& type) { m_event_type = type; }
-    auto getType() const noexcept -> std::string { return m_event_type; };
+    auto getType() const noexcept -> std::string { return m_event_type; }
 
     private:
     std::string m_event_type{UNDEFINED_EVENT};

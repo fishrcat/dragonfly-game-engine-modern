@@ -27,18 +27,20 @@ Object::~Object() {
                 std::format("Object: removed object with id {}", getId()));
 }
 
-void Object::setId(const int new_id) { m_id = new_id; }
+void Object::setVelocity(Vector new_velocity) {
+    m_speed = new_velocity.magnitude();
+    new_velocity.normalize();
+    m_direction = new_velocity;
+}
 
-auto Object::getId() const noexcept -> int { return m_id; }
+auto Object::getVelocity() const -> Vector {
+    Vector velocity = m_direction;
+    velocity.scale(m_speed);
+    return velocity;
+}
 
-void Object::setType(const std::string_view new_type) { m_type = new_type; }
-
-auto Object::getType() const noexcept -> const std::string& { return m_type; }
-
-void Object::setPosition(const Vector& new_pos) { m_position = new_pos; }
-
-auto Object::getPosition() const noexcept -> const Vector& {
-    return m_position;
+auto Object::predictPosition() const -> Vector {
+    return m_position + getVelocity();
 }
 
 }  // namespace df

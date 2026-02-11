@@ -28,6 +28,8 @@ class Player : public df::Object {
     Player() {
         setType("Player");
         setPosition({5.0F, 5.0F});
+        setSpeed(0.25);
+        setDirection({1.0F, 0.0F});
     }
 
     auto draw() -> int override {
@@ -79,17 +81,15 @@ auto main(int argc, char* argv[]) -> int {
         WM.markForDelete(enemy);
     }
 
-    // Fill window edges for visual alignment check
+    // Place markers at the four window corners for alignment check
     const int h_chars = DM.getHorizontalChars();
     const int v_chars = DM.getVerticalChars();
-    for (int x = 0; x < h_chars; ++x) {
-        new Marker({static_cast<float>(x), 0.0F});
-        new Marker({static_cast<float>(x), static_cast<float>(v_chars - 1)});
-    }
-    for (int y = 1; y < v_chars - 1; ++y) {
-        new Marker({0.0F, static_cast<float>(y)});
-        new Marker({static_cast<float>(h_chars - 1), static_cast<float>(y)});
-    }
+
+    new Marker({0.0F, 0.0F});                             // Top-left
+    new Marker({static_cast<float>(h_chars - 1), 0.0F});  // Top-right
+    new Marker({0.0F, static_cast<float>(v_chars - 1)});  // Bottom-left
+    new Marker({static_cast<float>(h_chars - 1),
+                static_cast<float>(v_chars - 1)});  // Bottom-right
 
     // Run test game
     GM.run();

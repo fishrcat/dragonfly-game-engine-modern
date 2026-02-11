@@ -37,6 +37,8 @@ class WorldManager : public Manager {
     auto markForDelete(Object *p_obj) -> int;
     auto removeDeletions() -> int;
 
+    auto moveObjects() const -> int;
+
     private:
     WorldManager();
 

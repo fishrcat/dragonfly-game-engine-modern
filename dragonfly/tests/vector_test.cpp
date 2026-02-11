@@ -17,7 +17,7 @@ TEST(VectorTest, Constructors) {
     expectVectorEQ(Vector(3.F, -4.F), 3.F, -4.F);
 }
 
-TEST(VectorTest, MagnitudeAndNormalize) {
+TEST(VectorTest, MagnitudeNormalizeScale) {
     Vector v(3.F, 4.F);
     EXPECT_FLOAT_EQ(v.magnitude(), 5.F);
 
@@ -27,6 +27,10 @@ TEST(VectorTest, MagnitudeAndNormalize) {
     Vector zero(0.F, 0.F);
     zero.normalize();
     expectVectorEQ(zero, 0.F, 0.F);
+
+    Vector one(1.F, 1.F);
+    one.scale(2.0F);
+    expectVectorEQ(one, 2.F, 2.F);
 }
 
 TEST(VectorTest, UnaryAndBinaryOperators) {

@@ -71,7 +71,10 @@ auto WorldManager::objectsOfType(const std::string_view type) const
     return m_updates.getByType(type);
 }
 
-void WorldManager::update() { removeDeletions(); }
+void WorldManager::update() {
+    moveObjects();
+    removeDeletions();
+}
 
 void WorldManager::draw() const {
     for (auto* obj : getAllObjects()) {
@@ -106,6 +109,20 @@ auto WorldManager::removeDeletions() -> int {
     }
 
     m_deletions.clear();  // reset for next frame
+    return count;
+}
+
+auto WorldManager::moveObjects() const -> int {
+    int count = 0;
+
+    for (auto* obj : getAllObjects()) {
+        if (Vector new_pos = obj->predictPosition();
+            obj->getPosition() != new_pos) {
+            obj->setPosition(new_pos);
+            count++;
+        }
+    }
+
     return count;
 }
 
