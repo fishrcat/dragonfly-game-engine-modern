@@ -133,7 +133,7 @@ auto DisplayManager::swapBuffers() const -> int {
     // Move buffer to display
     m_p_window->display();
     // Clear buffer for next draw
-    m_p_window->clear();
+    m_p_window->clear(m_background_color);
 
     return 0;
 }
