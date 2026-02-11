@@ -39,4 +39,8 @@ auto Object::getVelocity() const -> Vector {
     return velocity;
 }
 
+auto Object::predictPosition() const -> Vector {
+    return m_position + getVelocity();
+}
+
 }  // namespace df

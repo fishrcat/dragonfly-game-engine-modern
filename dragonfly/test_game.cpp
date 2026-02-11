@@ -28,6 +28,8 @@ class Player : public df::Object {
     Player() {
         setType("Player");
         setPosition({5.0F, 5.0F});
+        setSpeed(0.25);
+        setDirection({1.0F, 0.0F});
     }
 
     auto draw() -> int override {

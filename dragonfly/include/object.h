@@ -35,7 +35,7 @@ class Object {
 
     void setVelocity(Vector new_velocity);
     auto getVelocity() const -> Vector;
-    [[nodiscard]] auto predictPosition() -> Vector;
+    [[nodiscard]] auto predictPosition() const -> Vector;
 
     virtual auto eventHandler([[maybe_unused]] const Event* p_e) -> int {
         return 0;
