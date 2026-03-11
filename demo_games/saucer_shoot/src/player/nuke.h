@@ -5,15 +5,13 @@
 const std::string NUKE_EVENT = "nuke";
 
 class EventNuke : public df::Event {
-
-public:
-  EventNuke();
+    public:
+    EventNuke();
 };
 
 #define NUKE_STRING "Nukes"
 
 class NukesDisplay : public df::ViewObject {
-
-public:
-  NukesDisplay();
+    public:
+    NukesDisplay();
 };

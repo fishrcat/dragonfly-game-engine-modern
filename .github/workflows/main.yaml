@@ -22,7 +22,7 @@ jobs:
             dragonfly:
               - 'dragonfly/**'
             saucer:
-              - 'saucer_shoot/**'
+              - 'demo_games/saucer_shoot/**'
 
   dragonfly:
     needs: changes
