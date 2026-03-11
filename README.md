@@ -4,7 +4,10 @@ Modernized version of the Dragonfly C++ Text-Based Game Engine.
 
 Ports Dragonfly library and example games to use C++20, CMake, Clang, GoogleTest, Perf, etc.
 
-Extends with ASCII shader and additional sample game.
+Extends with
+* ASCII shader feature
+* additional sample game
+* game editor
 
 > Mark Claypool. Dragonfly - Program a Game Engine from Scratch, Interactive Media and Game Development, Worcester Polytechnic Institute, 2014. Online at: http://dragonfly.wpi.edu/book/
 
@@ -13,14 +16,14 @@ Extends with ASCII shader and additional sample game.
 - [Structure](#structure)
 - [Gameplay Examples](#gameplay-examples)
 - [Development Workflows](#development-workflows)
-  - [Dragonfly Game Engine Library](#dragonfly-game-engine-library)
+  - [Dragonfly Game Engine Library](#----dragonfly-game-engine-library----)
     - [0) Build Root Targets](#0-build-root-targets)
     - [1) Build Library and test_game Executable](#1-build-library-and-test_game-executable)
     - [2) Run Tests](#2-run-tests)
     - [3) Format & Lint](#3-format--lint)
     - [4) Profile Performance](#4-profile-performance)
-  - [Saucer Shoot Game](#saucer-shoot-game)
-  - [Bongo Bear Game](#bongo-bear-game)
+  - [Saucer Shoot Game](#----saucer-shoot-game----)
+  - [Bongo Bear Game](#----bongo-bear-game----)
 - [TODOs](#todos)
 - [Dragonfly Engine Class Structure](#dragonfly-engine-class-structure)
 - [Resources Collection](#resource-collection)
@@ -30,8 +33,8 @@ Extends with ASCII shader and additional sample game.
 ## Structure
 
 - `/dragonfly` <- dragonfly library
-- `/saucer_shoot` <- intro 2d shooter game utilizing the dragonfly library
-- `/bongo_bear` <- bongo cat game but it's a bear using the dragonfly library and ascii shader
+- `demo_games/saucer_shoot` <- intro 2d shooter game utilizing the dragonfly library
+- `demo_games/bongo_bear` <- bongo cat game but it's a bear - using the dragonfly library and ascii shader
 
 ---
 
@@ -88,7 +91,7 @@ cmake --build build --target profile-dragonfly
 
 See `build/flamegraph.svg` for an interactive profile like the following example
 
-![flamegraph-example.png](img/flamegraph-example.png)
+![flamegraph-example.png](docs/img/flamegraph-example.png)
 
 ### --- Saucer Shoot Game ---
 
@@ -112,8 +115,9 @@ See `build/flamegraph.svg` for an interactive profile like the following example
   - [x] DC5: Display Manager
   - [x] DC6: Input Manager and Input Events
   - [x] DC7: --- Dragonfly Naiad ---
-  - [ ] DEV: *(Non-book content)* Integrations Tests and Audit Log Levels
-  - [ ] DEV: *(Non-book content)* Config Manager and Dev Tooling Upgrades
+  - [ ] DEV: *(Non-book content)* Config Manager
+  - [ ] DEV: *(Non-book content)* Integration tests via dragonfly.log snapshots
+  - [ ] DEV: *(Non-book content)* Migrate to templates rather than string types
   - [ ] DC8: Sprite & Resource Manager
   - [ ] DC9: Sprite Animation
   - [ ] DC10: Collisions & Views
@@ -128,9 +132,10 @@ See `build/flamegraph.svg` for an interactive profile like the following example
   - [ ] Enable releases to GitHub page from action build files
 - [ ] **Feature Extension** - Write an ASCII shader with dithering and edge detection for the engine
 - [ ] **Bongo Bear** - Create advanced game example using all library features
-- [ ] **Other Library Modernization Passes**
-  - [ ] Use templates rather than string types for objects/managers/etc.
-  - [ ] Take a pass over design decisions wrt Game Engine Architecture, Gregory read
+- [ ] Editor - Use [imgui framework](imguihttps://github.com/ocornut/imgui/
+  - [ ] Config editor
+  - [ ] File editor with build button
+  - [ ] Animation editor
 
 ---
 
@@ -163,15 +168,15 @@ See `build/flamegraph.svg` for an interactive profile like the following example
 
 ### Manager
 
-| Class            | Description                                   |
-|------------------|-----------------------------------------------|
-| Manager          | Base class for engine managers                |
-| DisplayManager   | Manager of the graphics display             Flamegraph  |
-| GameManager      | Manager of the game loop                      |
-| InputManager     | Manager of player input (keyboard and mouse) |
-| LogManager       | Manager of the logfile                        |
-| ResourceManager  | Manager of resources (sprites, sounds, music)|
-| WorldManager     | Manager of the game world                     |
+| Class           | Description                                            |
+|-----------------|--------------------------------------------------------|
+| Manager         | Base class for engine managers                         |
+| DisplayManager  | Manager of the graphics display             Flamegraph |
+| GameManager     | Manager of the game loop                               |
+| InputManager    | Manager of player input (keyboard and mouse)           |
+| LogManager      | Manager of the logfile                                 |
+| ResourceManager | Manager of resources (sprites, sounds, music)          |
+| WorldManager    | Manager of the game world                              |
 
 ### Object
 

@@ -15,7 +15,7 @@ repos:
         language: system
         types_or: [c, c++, header]
         args: [-i]
-        exclude: ^saucer_shoot/  # TODO: Re-enable Saucer Shoot workflows when dragonfly library is re-implemented
+        exclude: ^demo_games/  # TODO: Re-enable Saucer Shoot workflows when dragonfly library is re-implemented
 
       - id: clang-tidy
         name: clang-tidy
@@ -23,4 +23,4 @@ repos:
         language: system
         types_or: [c, c++]
         args: ["-p", "build", "--quiet"]
-        exclude: ^saucer_shoot/  # TODO: Re-enable Saucer Shoot workflows when dragonfly library is re-implemented
+        exclude: ^demo_games/  # TODO: Re-enable Saucer Shoot workflows when dragonfly library is re-implemented
