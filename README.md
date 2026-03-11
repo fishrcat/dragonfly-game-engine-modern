@@ -16,14 +16,14 @@ Extends with
 - [Structure](#structure)
 - [Gameplay Examples](#gameplay-examples)
 - [Development Workflows](#development-workflows)
-  - [Dragonfly Game Engine Library](#dragonfly-game-engine-library)
+  - [Dragonfly Game Engine Library](#----dragonfly-game-engine-library----)
     - [0) Build Root Targets](#0-build-root-targets)
     - [1) Build Library and test_game Executable](#1-build-library-and-test_game-executable)
     - [2) Run Tests](#2-run-tests)
     - [3) Format & Lint](#3-format--lint)
     - [4) Profile Performance](#4-profile-performance)
-  - [Saucer Shoot Game](#saucer-shoot-game)
-  - [Bongo Bear Game](#bongo-bear-game)
+  - [Saucer Shoot Game](#----saucer-shoot-game----)
+  - [Bongo Bear Game](#----bongo-bear-game----)
 - [TODOs](#todos)
 - [Dragonfly Engine Class Structure](#dragonfly-engine-class-structure)
 - [Resources Collection](#resource-collection)
@@ -34,7 +34,7 @@ Extends with
 
 - `/dragonfly` <- dragonfly library
 - `demo_games/saucer_shoot` <- intro 2d shooter game utilizing the dragonfly library
-- `demo_games/bongo_bear` <- bongo cat game but it's a bear using the dragonfly library and ascii shader
+- `demo_games/bongo_bear` <- bongo cat game but it's a bear - using the dragonfly library and ascii shader
 
 ---
 
@@ -132,7 +132,7 @@ See `build/flamegraph.svg` for an interactive profile like the following example
   - [ ] Enable releases to GitHub page from action build files
 - [ ] **Feature Extension** - Write an ASCII shader with dithering and edge detection for the engine
 - [ ] **Bongo Bear** - Create advanced game example using all library features
-- [ ] Editor - Use [ImGui Framework](imguihttps://github.com/ocornut/imgui/
+- [ ] Editor - Use [imgui framework](imguihttps://github.com/ocornut/imgui/
   - [ ] Config editor
   - [ ] File editor with build button
   - [ ] Animation editor
@@ -168,15 +168,15 @@ See `build/flamegraph.svg` for an interactive profile like the following example
 
 ### Manager
 
-| Class            | Description                                   |
-|------------------|-----------------------------------------------|
-| Manager          | Base class for engine managers                |
-| DisplayManager   | Manager of the graphics display             Flamegraph  |
-| GameManager      | Manager of the game loop                      |
-| InputManager     | Manager of player input (keyboard and mouse) |
-| LogManager       | Manager of the logfile                        |
-| ResourceManager  | Manager of resources (sprites, sounds, music)|
-| WorldManager     | Manager of the game world                     |
+| Class           | Description                                            |
+|-----------------|--------------------------------------------------------|
+| Manager         | Base class for engine managers                         |
+| DisplayManager  | Manager of the graphics display             Flamegraph |
+| GameManager     | Manager of the game loop                               |
+| InputManager    | Manager of player input (keyboard and mouse)           |
+| LogManager      | Manager of the logfile                                 |
+| ResourceManager | Manager of resources (sprites, sounds, music)          |
+| WorldManager    | Manager of the game world                              |
 
 ### Object
 
