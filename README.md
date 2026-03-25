@@ -131,8 +131,9 @@ See `build/flamegraph.svg` for an interactive profile like the following example
   - [ ] Enable multi-build of all example games and dragonfly library
   - [ ] Enable releases to GitHub page from action build files
 - [ ] **Feature Extension** - Write an ASCII shader with dithering and edge detection for the engine
+- [ ] **Feature Extension** - Enable animation effects using [coroutines](https://mropert.github.io/2026/03/20/unity_cpp_coroutines/)
 - [ ] **Bongo Bear** - Create advanced game example using all library features
-- [ ] Editor - Use [imgui framework](imguihttps://github.com/ocornut/imgui/
+- [ ] **Editor** - Use [imgui framework](imguihttps://github.com/ocornut/imgui/
   - [ ] Config editor
   - [ ] File editor with build button
   - [ ] Animation editor
