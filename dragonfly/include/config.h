@@ -30,6 +30,7 @@ constexpr std::string WINDOW_TITLE_DEFAULT = "Dragonfly";
 
 // Graphics Settings
 inline constexpr std::string FONT_FILE;
+constexpr int MAX_ALTITUDE = 4;
 
 // Debug Mode Settings
 

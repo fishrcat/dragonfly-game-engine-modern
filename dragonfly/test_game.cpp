@@ -18,7 +18,7 @@ class Marker : public df::Object {
     }
 
     auto draw() -> int override {
-        DM.drawCh(getPosition(), *"B", df::Color::Yellow);
+        DM.drawCh(getPosition(), *"B", df::Color::Black);
         return 0;
     }
 };
@@ -90,6 +90,8 @@ auto main(int argc, char* argv[]) -> int {
     new Marker({0.0F, static_cast<float>(v_chars - 1)});  // Bottom-left
     new Marker({static_cast<float>(h_chars - 1),
                 static_cast<float>(v_chars - 1)});  // Bottom-right
+
+    DM.setBackgroundColor(df::Color::White);
 
     // Run test game
     GM.run();

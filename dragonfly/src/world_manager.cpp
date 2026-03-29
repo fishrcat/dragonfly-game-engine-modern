@@ -3,6 +3,7 @@
 // Engine
 #include "world_manager.h"
 
+#include "config.h"
 #include "log_manager.h"
 #include "object_list.h"
 
@@ -77,8 +78,16 @@ void WorldManager::update() {
 }
 
 void WorldManager::draw() const {
+    std::vector<Object*> buckets[MAX_ALTITUDE + 1];
+
     for (auto* obj : getAllObjects()) {
-        obj->draw();
+        buckets[obj->getAltitude()].push_back(obj);
+    }
+
+    for (int altitude = 0; altitude <= MAX_ALTITUDE; ++altitude) {
+        for (auto* obj : buckets[altitude]) {
+            obj->draw();
+        }
     }
 }
 
